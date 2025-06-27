@@ -1,8 +1,4 @@
-Beleza! Vou manter toda a história igual, só melhorando as interações entre vocês e os NPCs, deixando os diálogos mais naturais e com mais vida. Também deixo sugestões de ações e testes no meio pra você poder jogar.
-
----
-
-# RPG
+# Ecos de Carpa Grande
 
 Você foi enviado para uma cidade pequena conhecida como Carpa Grande, pela organização SILK, responsável por investigar o paranormal. A cidade sofre com muitos desaparecimentos, mas um caso chamou atenção: um pai foi brutalmente assassinado em casa. Na cena do crime, símbolos escritos em latim — *Sanctus redibit* — estavam escritos com sangue, e marcas de garras nas paredes. A esposa e os filhos desapareceram sem deixar rastros. Sem arrombamento, sem testemunhas. Apenas silêncio e cheiro de queimado impregnando o ar. Você chegou com dois amigos que considera irmãos, com quem já fez três missões.
 
