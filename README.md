@@ -19,9 +19,35 @@ Após desembarcarem em Carpa Grande, vocês caminham pelas ruas com passos silen
 
  --CRISTOFER A GENTE QUER UM CARRO ESPORTIVO
 
+ --MIRELA a gente não tem carro esportivo temos apenas um GOL azul para alugar 
 
-Kaizer, ouvindo tudo isso, teve uma ideia: ir até a floresta e descobrir a origem desses gritos para ver se podia ter algo relacionado aos Hereges do Véu ,e ele estava meio recioso de ir pois não tinham muitas informações.E falou para o cristofer que concordou em ir e ja queria ir na hora que ele falou. *VV* falou que não era uma boa ideia ir agora pois tinham poucas informaçoes e era melhor fazer um plano antes de agir os dois conncordaram.
+--C    ENTAO TABOM 
 
+Kaizer fala que este tabom e alugam o carro e *VV* paga por 3 semanas 
+
+ --C estou com fome va,os parar em algum lugar para comer 
+ 
+ VV e kaizer concordam e vao a um restaurante proximo chegando em frente ao restaurante Fernandinho’s Comidas, avistam um grupo de senhores conversando na calçada. Vocês ouvem fragmentos de uma conversa abafada:
+
+ “A floresta voltou a gritar... Igual antes... Nos anos noventa...”
+ 
+“Dizem que a culpa é daquela gangue nova... Mas ninguém vê eles à noite.”
+
+“O pior... é que os gritos não parecem humanos...”
+A expressão dos idosos não era de medo — era de resignação. Como se já tivessem perdido essa luta no passado.
+
+Kaizer para imediatamente. Seus olhos estreitam. Ele sussurra:
+“Pode ser coisa dos Hereges do Véu... Eles operam em áreas isoladas, sempre ligados a desaparecimentos.”
+
+Cristofer já queria ir à floresta, instintivamente.
+
+*VV*segura seu braço e sugere:
+“Sem informações, é suicídio. Primeiro entendemos o terreno. Depois entramos.”
+
+Cristofer resmunga, mas acata. Kaizer já está mexendo no celular, procurando qualquer pista sobre cultos, símbolos ou registros antigos da cidade.
+
+
+ 
 Cristofer deu a ideia de perguntar aos locais que moravam aqui    mas 
 
 --Kaizer falou que era melhor não pois iria chamar muita a atenção para eles 
