@@ -1,8 +1,9 @@
 # RPG
 
-Você é de uma cidade pequena conhecida como Carpa Grande. Hoje é 12/03/2012. e tem dois amigos que  os considera como irmoaos que sao 
+Você foi enviado para uma cidade pequena conhecida como Carpa Grande foram enviados pela . Hoje é 12/03/2012. e tem dois amigos que  os considera como irmoaos que sao 
 
   Kaizer – tem uma postura esguia, um cabelo longo e bagunçado, e olheiras profundas que fazem parecer que não dorme há dias.
+  
   Cristofer – mede 1,85m, tem músculos definidos, uma cicatriz no rosto e um sotaque estrangeiro, já que morou por anos nos Estados Unidos.
 
 Vocês estavam andando pela cidade quando passaram em frente ao Fernandinho’s Comidas, onde um grupo de velhos estava parado, conversando sobre lendas antigas da cidade.Eles falavam que, sempre que passavam diante a floresta maldita, ouviam gritos que achavam que era culpa de uma gangue recem chegada a cidade.Mas que não sabiam de onde vinham, mas os Gitos arrepiava ate a espinha .
