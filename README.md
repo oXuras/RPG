@@ -46,17 +46,104 @@ Cristofer já queria ir à floresta, instintivamente.
 
 Cristofer resmunga, mas acata. Kaizer já está mexendo no celular, procurando qualquer pista sobre cultos, símbolos ou registros antigos da cidade.
 
+--atendente OI boa tarde o que voces vao querer comer o famoso cacetinho do fernandinho?
 
+-- CRISTOFER  SIM VOU QUERER O CACETINHO 
+
+--A e voces dois vao querer o cacetinho tambem 
+
+A sim vamos 
+
+--*VV* achou algo kaizer 
+
+--K Nao nao encontrei nada relacionado a isso mas sabemos pelo menos a data vamos ter que ir ate a biblioteca ver se tem algo 
+
+--c PODE SER GENTE VAMOS LA ENTAO 
+
+eles demoram cerca de 5 minutos ate la pois a cidade e pequena 
+
+
+ Chegando la veem um prédio velho, com janelas empoeiradas e cheiro de papel molhado. O lugar parece congelado no tempo.
  
-Cristofer deu a ideia de perguntar aos locais que moravam aqui    mas 
+ Na recepção, uma senhora está sentada:
+ Claudete, de aproximadamente 65 anos. Usa óculos de lentes grossas, caminha lentamente e fala com uma doçura quase desconcertante
 
---Kaizer falou que era melhor não pois iria chamar muita a atenção para eles 
+ Cristofer, sempre direto, se aproxima e grita:
+“BOM DIA, CLAUDETE!”
 
---*VV* e melhor irmos ate uma biblioteca entao --Os dois falaram que era uma ideia
+Ela levanta os olhos e sorri com gentileza:
+“Nossa… fazia tempo que não via jovens por aqui.”
 
+Você se aproxima com cautela:
+“Estamos procurando informações sobre a floresta… E os gritos.”
 
-Chegando a biblioteca voces vem a recepsionista: 
+Antes que possa dizer mais, Kaizer te interrompe com firmeza:
+“Não diga isso. Aqui, não. Ela pode contar pra alguém... ou despertar o que está dormindo.”
 
-  Claudete - Uma senhorinha de mais ou menos uns 65 anos que usa um oculos garrafão e não escuta muito bem.
+Claudete os observa por um instante. Seus olhos parecem atravessar vocês por dentro. Então ela responde:
 
-Cristofer grita falando BOM DIA CLAUDETE , e ela responde a oi quanto tempo nao vejo garotos vindo na biblioteca "VV" fala sim viemos perguntar se ela nao sabia ou tinha algo relacionado aos gritos que tinhamna floresta *Claudete* porque voces querem saber disso *VV* pois queremos ir procurar da onde vem *Kaizer enterrompe* Voce nao pode falar isso para ela , ela vai falar
+“O que vocês procuram… pode ser encontrado. Mas talvez vocês não gostem do que vão achar.”
+
+Ela levanta com dificuldade e indica os fundos da biblioteca — uma porta trancada que leva ao arquivo histórico da cidade. Um lugar que poucos visitam. Um lugar onde os registros antigos, os recortes de jornal, os relatos esquecidos e os nomes riscados do tempo ainda existem.
+
+A partir daqui, a escuridão se aproxima.
+O tempo corre, e o véu entre os mundos está ficando mais fino.
+O que vocês vão encontrar… pode mudar a cidade.
+Ou destruir tudo.
+
+Claudete tira do bolso um molho de chaves antigo. Elas tilintam de maneira metálica e arrastada, como se não fossem usadas há anos. Sua mão treme levemente enquanto gira a chave na porta dos fundos da biblioteca. A tranca cede com um estalo seco.
+
+“Entrem… Mas deixem a porta encostada. Se ouvirem algo... não respondam.”
+
+Ela não explica mais nada.
+
+Vocês descem uma pequena escada de pedra. A iluminação é fraca, e o ar no ambiente é frio, pesado — quase sólido. O cheiro de mofo e papel velho se mistura com algo mais... metálico, como ferro enferrujado. Cristofer franze o rosto.
+
+“Esse cheiro... É sangue velho.”
+“Ou algo muito parecido com isso.” – responde Kaizer, sussurrando.
+
+O lugar parece um arquivo morto: estantes altas, caixas empilhadas, livros de registros, jornais antigos, tudo acumulado sem organização clara. Um relógio de ponteiros parado marca 3h37. Vocês não sabem há quanto tempo.
+
+Kaizer se aproxima de uma pilha de jornais da década de 1980. Começa a folhear, atento. Cristofer pega uma lanterna e vasculha as prateleiras, enquanto você abre uma caixa marcada com a etiqueta: "REGISTROS DE CASOS ESTRANHOS – CONFIDENCIAL".
+
+Dentro, vários documentos digitados à máquina, acompanhados de fotografias em preto e branco: imagens borradas de símbolos riscados em árvores, pessoas desaparecidas, olhos riscados em retratos de família, e páginas arrancadas de diários. Um dos papéis chama sua atenção:
+
+Boletim de Ocorrência - 11/11/1987
+Local: Fazenda Moura – Zona rural, limite da Floresta Maldita
+Ocorrência: Desaparecimento coletivo
+Detalhes: A família Moura desapareceu na noite do dia 10. Na manhã seguinte, foram encontrados 3 pares de sapatos alinhados na porta da casa e símbolos queimados no chão da sala. Testemunhas alegam ouvir “cantos” vindos da floresta durante a madrugada. Caso arquivado por falta de provas.
+
+Cristofer encontra uma caixa com fitas cassete etiquetadas como "Gravações Noturnas - Expedição 1993". Ao lado, um gravador velho, ainda funcional. Ele insere uma das fitas. O chiado é forte, mas uma voz feminina começa a falar:
+
+“Dia 12 de abril de 1993. Estamos em campo, ouvimos os gritos outra vez. Não parecem humanos. A frequência bate com o padrão detectado em 1987. A membrana está mais fina aqui. O tempo… está errando.”
+
+A fita é interrompida por um som alto e distorcido. Uma espécie de grito invertido. A luz pisca. E, por um instante, todos vocês sentem algo pressionar o peito — como se o ar ao redor estivesse tentando entrar dentro de vocês.
+
+“Isso confirma minha teoria. Os Hereges do Véu já estiveram aqui antes... e acho que nunca saíram.”
+
+Ele mostra um recorte de jornal datado de 1984:
+
+“Peregrinos das Sombras fazem ritual no interior”
+Moradores relatam ter visto um grupo encapuzado entrando na floresta na noite de lua nova. Segundo relatos, eles cantavam em uma língua estranha e carregavam uma criança no colo. A polícia local nunca localizou o grupo.
+
+Cristofer encara a imagem por alguns segundos.
+
+“A gangue nova… pode ser uma fachada. E se esses caras são os mesmos de décadas atrás? E se… não envelheceram?”
+
+Silêncio.
+
+Você começa a juntar as peças. Os desaparecimentos de agora ecoam os de décadas atrás. Os símbolos, os relatos de gritos, os cultos — tudo leva ao mesmo ponto: a Floresta Maldita.
+
+📍 O próximo passo
+Kaizer espalha os documentos sobre uma mesa poeirenta, conectando os eventos com linha vermelha.
+
+“A próxima lua nova é em dois dias. Se os rituais seguirem o padrão, eles vão agir de novo. E temos só esse tempo pra descobrir onde e como impedir.”
+
+Cristofer fecha a caixa das fitas e levanta.
+
+“Se for pra entrar naquela floresta, que seja com os dois pés no chão e os olhos abertos.”
+
+Você guarda os documentos principais numa pasta. Claudete observa à distância, imóvel. Antes de vocês subirem as escadas de volta, ela diz, quase como um sussurro:
+
+“Eles não gostam quando os arquivos são mexidos…”
+
