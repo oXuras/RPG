@@ -191,6 +191,8 @@ Você guarda os documentos numa pasta. Claudete observa imóvel.
 Antes de saírem, ela sussurra:
 — “Eles não gostam quando mexem nos arquivos...”
 
+
+
 🎲 **Teste de Investigação (CD 12) para encontrar pistas adicionais:**
 \--------dado-------
 
@@ -198,4 +200,179 @@ Antes de saírem, ela sussurra:
 * Falha: Só informações vagas, o que pode atrasar a missão.
 
 ---
+
+
+Perfeito! A seguir está a **versão final de “Ecos de Carpa Grande”**, com **todas as cenas mantidas**, mas agora com **charadas mais difíceis, criptografadas e desafiadoras**, mantendo o estilo narrativo fluido e o clima sombrio de RPG.
+
+---
+
+
+
+## 🎭 CENA 11 – A ENTRADA DA FLORESTA
+
+O céu, mesmo sem nuvens, não deixa a lua aparecer. Carpa Grande parece contida sob uma cúpula invisível. O carro para. Diante de vocês, a vegetação negra se abre como uma garganta.
+
+Kaizer respira fundo e mostra um bilhete.
+— “Recebi isso ontem à noite. A origem é mascarada, mas o conteúdo... é um enigma.”
+
+O papel contém:
+
+```
+CÓDIGO HEX: 53 69 6E 6E 65 72 20 4C 61 73 20 52 6F 63 61 73  
+CLUE 1: Encontrai a letra que caminha sem pés,  
+CLUE 2: A palavra que existe só na ausência de som,  
+CLUE 3: E o número que vive na linha do esquecimento.
+
+Somai os três.  
+Dividai pelo tempo que não existe.  
+O resultado aponta para o centro.
+
+(X?, Y?)
+```
+
+
+
+🎲 **Teste de Criptografia (CD 16):**
+
+* **Sucesso:** Você converte o HEX para texto (“Sinner Las Rocas”), e percebe que se refere a uma formação rochosa que aparece nos mapas antigos de Carpa Grande. As três pistas indicam: **Espaço (sem pés), Silêncio (sem som), e Zero (linha do esquecimento)**. A soma é metafórica: lugar onde nada ecoa.
+  -> A coordenada X5 Y13 se confirma.
+* **Falha:** Você consegue traduzir o HEX mas interpreta mal as pistas — segue por um caminho errado, aumentando o risco de emboscada.
+
+---
+
+
+
+## 🌲 CENA 12 – A CLAREIRA DOS ECOS
+
+A vegetação abre num círculo perfeito. A lua não ilumina aqui, mas ainda assim o chão brilha com um brilho úmido. O altar ao centro pulsa com marcas vivas.
+
+Kaizer passa luz UV e revela um painel de símbolos ocultos em rochas, dispostos como um mosaico incompleto. Há uma inscrição lateral, entalhada por dentro:
+
+> **“Scripta manent, verba volant.
+> Dentro do que não fala, escuta-se o fim.”**
+
+Ao lado, outro código, dessa vez em **Base64**:
+
+```
+U2FuY3R1cyByZWRpYml0Lg==  
+```
+
+
+
+🎲 **Teste de Inteligência (CD 17):**
+
+* **Sucesso:** Você decifra: “Sanctus redibit.” A mesma frase do crime inicial. Você percebe que todas as inscrições não são avisos — são **ativadores**, e que estão espalhadas como um circuito. Ao decifrar os símbolos certos, pode **interromper o fluxo ritualístico**.
+* **Falha:** A decodificação leva a erro — a inscrição ativa uma leve vibração no altar, alertando os cultistas.
+
+Logo abaixo do altar, você encontra um dispositivo com teclas numéricas e um código:
+
+```
+Input: █ █ █ █  
+Hint: 3↑ 5↓ 2← 4→  
+Scriptum: "A verdade nunca olha em linha reta."
+```
+
+🎲 **Teste de Raciocínio Lógico (CD 16):**
+
+* **Sucesso:** Você deduz que se trata de um código de deslocamento por vetor — uma combinação em cruz (substituição alfabética reversa em 4 direções). A senha correta é “XALE”.
+* **Falha:** Você erra a sequência, ativando uma runa de alarme — luz vermelha surge no chão. Eles sabem que vocês chegaram.
+
+---
+
+
+## 🕳️ CENA 13 – O RITUAL COMEÇA
+
+O ar se torna sólido. A floresta sussurra como se respirasse. Uma névoa rasteira sobe pelas raízes e revela dezenas de encapuzados. A criança está ali, imóvel.
+
+Entre eles, **Segfredo da Floresta** ergue-se: uma figura antinatural, coberta por cascas, galhos e runas em carne viva. Seus olhos negros parecem sugar a luz.
+
+Kaizer estremece:
+— “Ele não é um ser. É um algoritmo ancestral. Codificado no medo.”
+
+🎲 **Teste de Vontade (CD 17):**
+
+* **Sucesso:** Você resiste ao impacto mental e percebe — o Segfredo é **a manifestação da linguagem esquecida**. Tudo isso é sobre **recriar a linguagem que reprograma a realidade**.
+* **Falha:** Sua mente embaralha. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress.
+
+---
+
+
+
+## ⚔️ CENA 14 – COMBATE RITUALÍSTICO
+
+Cristofer avança como uma flecha, derrubando dois cultistas. Kaizer traça uma runa de dispersão com giz negro. Você prepara uma armadilha com sal e óleo consagrado.
+
+🎲 **Teste de Força (Cristofer – CD 14):**
+
+* **Sucesso:** Nocauteia dois cultistas antes que gritem.
+* **Falha:** Um deles crava um punhal ritual no ombro de Cristofer — 3 de dano.
+
+🎲 **Teste de Ocultismo (Kaizer – CD 16):**
+
+* **Sucesso:** A runa brilha e afasta metade dos encapuzados, revelando a base do altar.
+* **Falha:** A runa reverbera mal. Um raio escuro atinge Kaizer. Ele perde a fala temporariamente.
+
+🎲 **Teste de Destreza (Você – CD 15):**
+
+* **Sucesso:** A armadilha pega um encapuzado que portava a chave da cela ritual.
+* **Falha:** Você escorrega no sangue, cai próximo ao altar — fica vulnerável por 1 turno.
+
+---
+
+
+## 🧩 CENA 15 – O QUEBRA-CABEÇA FINAL
+
+Kaizer encontra no altar uma tranca antiga com letras giratórias. Ao lado, a inscrição:
+
+> **“Em 1987 fomos escritos.
+> Em 1993 fomos lidos.
+> Agora… nos deletem.”**
+
+E mais abaixo, um QR Code queimado. Kaizer tenta reconstruí-lo com a lente UV. No verso de uma pedra, há uma frase:
+
+```
+MAIOR QUE DEUS,  
+PIOR QUE O DIABO,  
+OS POBRES O TÊM,  
+OS RICOS PRECISAM,  
+E SE VOCÊ COMER, VOCÊ MORRE.
+```
+
+🎲 **Teste de Enigma (CD 18):**
+
+* **Sucesso:** Você responde: **"NADA"**. A tranca gira, abrindo um compartimento com um cristal envolvido por ossos. O cristal está pulsando. Se destruído, o código colapsa.
+* **Falha:** Você hesita, responde errado. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.
+
+---
+
+## 🌓 CENA 16 – FINAL DOS ECOS
+
+Se o cristal for destruído com a runa correta, Segfredo ruge, se dissolve em vapor negro. A criança desperta. Os cultistas desabam, como bonecos sem fios. A floresta inteira parece se soltar do chão — raízes regridem. A lua aparece pela primeira vez.
+
+Se falharem, o ritual se completa — Segfredo desaparece com a criança em um portal de árvores vivas. Claudete aparece nos arredores, observando, sussurrando:
+
+— “O próximo passo... já foi dado.”
+
+---
+
+## 📚 EPÍLOGO
+
+De volta à SILK, tudo é arquivado. VV analisa os dados. O sistema revela um novo código criptografado:
+
+```
+Protocolo Sigma-9 | Projeto Palimpsesto Ativo  
+Localização: SÃO MIGUEL DAS DUNAS  
+Status: Culto em Expansão  
+Prioridade: NÍVEL 6 – INTERVENÇÃO IMEDIATA
+```
+
+Kaizer sussurra, encarando a tela:
+— “A floresta pode queimar… mas o código dela sempre encontra outra página.”
+
+Fim do ciclo. Ou começo do próximo.
+
+---
+
+
+
 
