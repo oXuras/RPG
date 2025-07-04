@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Road: The Carpa Grande Mystery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap');
+        
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #0a0a0a;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+        
+        .game-container {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLDAsMCwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+        }
+        
+        .character {
+            transition: all 0.3s ease;
+        }
+        
+        .character:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+        }
+        
+        .location {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .location:hover {
+            transform: scale(1.1);
+        }
+        
+        .location::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .location:hover::after {
+            opacity: 1;
+        }
+        
+        .dialog-box {
+            background: rgba(20, 20, 30, 0.9);
+            border: 1px solid #4a5568;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+        
+        .health-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #ef4444, #f59e0b);
+        }
+        
+        .sanity-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        
+        .map-tile {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+        }
+        
+        .map-tile:hover {
+            box-shadow: 0 0 10px 3px rgba(139, 92, 246, 0.5);
+        }
+        
+        .flicker {
+            animation: flicker 3s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.4;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+            }
+        }
+        
+        .glow {
+            text-shadow: 0 0 5px rgba(139, 92, 246, 0.7);
+        }
+        
+        .scene-transition {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #8b5cf6;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b5cf6 }
+        }
+    </style>
+</head>
+<body class="game-container min-h-screen">
+    <!-- Main Game Container -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Game Header -->
+        <header class="mb-8 text-center border-b border-purple-900 pb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-purple-400 mb-2 glow">SILK ROAD</h1>
+            <h2 class="text-xl md:text-2xl text-gray-300 italic">The Carpa Grande Mystery</h2>
+        </header>
+
+        <!-- Game Content Area -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Panel - Game Map -->
+            <div class="lg:w-2/3 bg-gray-900 bg-opacity-70 rounded-lg p-4 border border-gray-800 shadow-xl">
+                <!-- Scene Title -->
+                <div class="mb-4 text-center">
+                    <h3 id="scene-title" class="text-2xl text-purple-300 font-bold mb-1">Cena 1 – Chegada à Cidade</h3>
+                    <div class="w-full h-1 bg-gradient-to-r from-transparent via-purple-600 to-transparent mb-2"></div>
+                    <p id="scene-subtitle" class="text-gray-300 italic">A van preta da SILK atravessa a última curva da estrada de terra...</p>
+                </div>
+                
+                <!-- Scene Visual -->
+                <div id="scene-visual" class="relative h-64 md:h-96 bg-gray-800 rounded-lg mb-4 overflow-hidden flex items-center justify-center scene-transition">
+                    <img id="scene-image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=" alt="Scene Visual" class="w-full h-full object-cover">
+                    
+                    <!-- Character Sprites -->
+                    <div id="character-sprites" class="absolute inset-0 flex items-end justify-center space-x-4 pb-4">
+                        <!-- Characters will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <!-- Scene Description -->
+                <div id="scene-description" class="bg-gray-800 bg-opacity-70 p-4 rounded-lg mb-4 text-gray-200 leading-relaxed border-l-4 border-purple-600">
+                    <p class="mb-2">A van preta da SILK atravessa a última curva da estrada de terra, o motor ronronando baixo, enquanto a névoa rasteira começa a se espalhar pelos campos e pelo mato. O céu está tingido de um cinza opaco, como se a luz do crepúsculo estivesse sendo engolida pelo tempo.</p>
+                    <p>À medida que o veículo se aproxima, a cidade surge tímida, como um segredo mal guardado. Carpa Grande parece uma relíquia esquecida, onde o tempo não passa direito. As casas rangem ao vento, e as janelas são olhos opacos que observam, mas não refletem a luz.</p>
+                </div>
+                
+                <!-- Player Choices -->
+                <div id="player-choices" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                    <!-- Choices will be dynamically added here -->
+                    <button class="choice-btn bg-gray-800 hover:bg-purple-900 text-gray-200 py-3 px-4 rounded-lg border border-gray-700 transition-all duration-300 hover:border-purple-500 hover:text-purple-300" onclick="makeChoice(1)">
+                        Observar o ambiente com atenção (Teste de Percepção CD 12)
+                    </button>
+                    <button class="choice-btn bg-gray-800 hover:bg-purple-900 text-gray-200 py-3 px-4 rounded-lg border border-gray-700 transition-all duration-300 hover:border-purple-500 hover:text-purple-300" onclick="makeChoice(2)">
+                        Ignorar os sinais e seguir em frente
+                    </button>
+                </div>
+                
+                <!-- Dice Roll Display -->
+                <div id="dice-roll" class="hidden bg-gray-800 p-4 rounded-lg mb-4 text-center">
+                    <div class="flex justify-center items-center space-x-4">
+                        <div class="text-xl font-bold text-purple-300">Rolagem:</div>
+                        <div id="dice-result" class="text-3xl font-bold bg-gray-900 w-16 h-16 flex items-center justify-center rounded-full border-2 border-purple-600">?</div>
+                        <div id="dice-total" class="text-xl font-bold text-white">Total: <span id="total-value">0</span></div>
+                    </div>
+                    <div id="dice-outcome" class="mt-2 text-purple-300 font-medium"></div>
+                </div>
+                
+                <!-- Continue Button -->
+                <div id="continue-section" class="hidden text-center">
+                    <button id="continue-btn" class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Continuar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Right Panel - Player Stats and Map -->
+            <div class="lg:w-1/3 space-y-6">
+                <!-- Player Stats -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-lg p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-300 mb-3 border-b border-gray-700 pb-2">Status do Personagem</h3>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-medium text-gray-300">Saúde</span>
+                            <span id="health-value" class="font-bold">15/15</span>
+                        </div>
+                        <div class="health-bar rounded-full overflow-hidden">
+                            <div id="health-bar" class="h-full w-full bg-red-500" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-medium text-gray-300">Sanidade</span>
+                            <span id="sanity-value" class="font-bold">18/18</span>
+                        </div>
+                        <div class="sanity-bar rounded-full overflow-hidden">
+                            <div id="sanity-bar" class="h-full w-full bg-blue-500" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <div class="bg-gray-800 p-3 rounded-lg">
+                            <div class="text-sm text-gray-400">Bônus de Ataque</div>
+                            <div class="text-xl font-bold text-white">+3</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded-lg">
+                            <div class="text-sm text-gray-400">Defesa</div>
+                            <div class="text-xl font-bold text-white">12</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Inventory -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-lg p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-300 mb-3 border-b border-gray-700 pb-2">Inventário</h3>
+                    <div id="inventory-items" class="grid grid-cols-3 gap-2">
+                        <div class="inventory-item bg-gray-800 p-2 rounded-lg text-center">
+                            <div class="bg-gray-700 w-12 h-12 mx-auto mb-1 rounded-lg flex items-center justify-center">🔦</div>
+                            <div class="text-xs text-gray-300">Lanterna</div>
+                        </div>
+                        <div class="inventory-item bg-gray-800 p-2 rounded-lg text-center">
+                            <div class="bg-gray-700 w-12 h-12 mx-auto mb-1 rounded-lg flex items-center justify-center">📱</div>
+                            <div class="text-xs text-gray-300">Celular</div>
+                        </div>
+                        <div class="inventory-item bg-gray-800 p-2 rounded-lg text-center">
+                            <div class="bg-gray-700 w-12 h-12 mx-auto mb-1 rounded-lg flex items-center justify-center">🔪</div>
+                            <div class="text-xs text-gray-300">Faca</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Map -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-lg p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-300 mb-3 border-b border-gray-700 pb-2">Mapa de Carpa Grande</h3>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(1)">
+                            <div class="text-2xl mb-1">🚗</div>
+                            <div class="text-xs text-gray-300">Chegada</div>
+                        </div>
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(2)">
+                            <div class="text-2xl mb-1">🏠</div>
+                            <div class="text-xs text-gray-300">Dona Iraci</div>
+                        </div>
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(3)">
+                            <div class="text-2xl mb-1">🏚️</div>
+                            <div class="text-xs text-gray-300">Casa da Colina</div>
+                        </div>
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(4)">
+                            <div class="text-2xl mb-1">🏢</div>
+                            <div class="text-xs text-gray-300">Orfanato</div>
+                        </div>
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(5)">
+                            <div class="text-2xl mb-1">🌊</div>
+                            <div class="text-xs text-gray-300">Lago Vinteiro</div>
+                        </div>
+                        <div class="map-tile bg-gray-800 rounded-lg p-2 text-center cursor-pointer h-24 flex flex-col items-center justify-center" onclick="goToScene(6)">
+                            <div class="text-2xl mb-1">👁️</div>
+                            <div class="text-xs text-gray-300">Boca da Mãe</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Log -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-lg p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-300 mb-3 border-b border-gray-700 pb-2">Registro do Jogo</h3>
+                    <div id="game-log" class="h-40 overflow-y-auto text-sm text-gray-300 space-y-2">
+                        <div class="log-entry border-b border-gray-800 pb-2">Você chegou em Carpa Grande...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            currentScene: 1,
+            health: 15,
+            maxHealth: 15,
+            sanity: 18,
+            maxSanity: 18,
+            attackBonus: 3,
+            defense: 12,
+            inventory: ['Lanterna', 'Celular', 'Faca'],
+            hasAmulet: false,
+            hasDiary: false,
+            hasKey: false,
+            choicesMade: {},
+            diceRoll: 0,
+            diceModifier: 0,
+            testDC: 0,
+            testType: '',
+            testSuccess: false
+        };
+
+        // Scenes Data
+        const scenes = {
+            1: {
+                title: "Cena 1 – Chegada à Cidade",
+                subtitle: "A van preta da SILK atravessa a última curva da estrada de terra...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "A van preta da SILK atravessa a última curva da estrada de terra, o motor ronronando baixo, enquanto a névoa rasteira começa a se espalhar pelos campos e pelo mato. O céu está tingido de um cinza opaco, como se a luz do crepúsculo estivesse sendo engolida pelo tempo.\n\nÀ medida que o veículo se aproxima, a cidade surge tímida, como um segredo mal guardado. Carpa Grande parece uma relíquia esquecida, onde o tempo não passa direito. As casas rangem ao vento, e as janelas são olhos opacos que observam, mas não refletem a luz.",
+                choices: [
+                    { text: "Observar o ambiente com atenção (Teste de Percepção CD 12)", action: "perception", dc: 12 },
+                    { text: "Ignorar os sinais e seguir em frente", action: "ignore" }
+                ],
+                characters: ["christofer", "kaizer", "vv"],
+                success: {
+                    description: "Você compartilha suas observações com Cristofer e Kaizer, ajudando o grupo a se preparar para o que está por vir — mais cautela, armas prontas, e foco redobrado.",
+                    effect: () => { gameState.defense += 1; addLogEntry("Você notou sinais estranhos e alertou o grupo. Defesa +1."); }
+                },
+                failure: {
+                    description: "Você ignora esses sinais, subestimando o ambiente. O grupo fica vulnerável a surpresas e armadilhas nas próximas cenas.",
+                    effect: () => { addLogEntry("Você ignorou os sinais de perigo. O grupo está menos preparado."); }
+                }
+            },
+            2: {
+                title: "Cena 2 – Dona Iraci",
+                subtitle: "Vocês deixam o carro estacionado próximo à pequena praça central de Carpa Grande...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "Vocês deixam o carro estacionado próximo à pequena praça central de Carpa Grande, onde algumas poucas árvores parecem mais secas do que vivas. O silêncio da cidade se mantém pesado, quase sufocante.\n\nAo atravessar a praça, avistam uma casa antiga, de madeira desgastada e pintura descascada. Uma senhora de cabelos grisalhos, com rosto marcado pelo tempo, está sentada na varanda. Ela observa vocês com olhos fundos e carregados de dor. Essa é Dona Iraci, uma das poucas que aceitam conversar sobre os desaparecimentos.",
+                choices: [
+                    { text: "Tentar persuadir Dona Iraci para obter informações (Teste de Persuasão CD 13)", action: "persuasion", dc: 13 },
+                    { text: "Mostrar respeito e tentar ganhar sua confiança", action: "respect" }
+                ],
+                characters: ["christofer", "kaizer", "vv", "iraci"],
+                success: {
+                    description: "Dona Iraci se abre, entrega o diário antigo do padre Vivaldi, que tinha estudado a história do culto local. Também fornece pistas para uma antiga construção chamada 'Casa da Colina'.",
+                    effect: () => { 
+                        gameState.hasDiary = true; 
+                        gameState.inventory.push("Diário do Padre");
+                        addLogEntry("Você obteve o diário do padre Vivaldi e informações sobre a Casa da Colina.");
+                    }
+                },
+                failure: {
+                    description: "Ela fecha-se, desconfiada, desconfortável. Dificulta o acesso a informações, e talvez alerte os cultistas sobre a investigação.",
+                    effect: () => { 
+                        gameState.sanity -= 2;
+                        updateStats();
+                        addLogEntry("Dona Iraci não confiou em você. -2 Sanidade.");
+                    }
+                }
+            },
+            3: {
+                title: "Cena 3 – Casa da Colina",
+                subtitle: "Vocês seguem as coordenadas dadas por Dona Iraci e chegam a uma construção isolada...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "Vocês seguem as coordenadas dadas por Dona Iraci e chegam a uma construção isolada, encoberta por árvores retorcidas e coberta de musgo. A casa parece abandonada, mas sinais de presença recente são evidentes: pegadas na lama, marcas de unhas nas janelas.\n\nO ambiente é pesado, o ar denso de umidade e algo indefinido — medo, talvez. Vocês vasculham o interior com lanternas, encontrando móveis cobertos de poeira, retratos antigos com rostos apagados, e paredes marcadas com símbolos em latim.",
+                choices: [
+                    { text: "Investigar os símbolos e tentar decifrar as páginas queimadas (Teste de Investigação CD 15)", action: "investigation", dc: 15 },
+                    { text: "Procurar por armadilhas antes de explorar", action: "caution" }
+                ],
+                characters: ["christofer", "kaizer", "vv"],
+                success: {
+                    description: "Descobrem uma passagem secreta sob o assoalho, levando a um porão com artefatos rituais e inscrições que indicam a localização de um 'Templo Submerso'.",
+                    effect: () => { 
+                        addLogEntry("Você encontrou o porão secreto com informações sobre o Templo Submerso.");
+                    }
+                },
+                failure: {
+                    description: "Ativam, sem querer, uma armadilha espiritual que causa um ataque mental — perda de sanidade temporária, alucinações e uma sensação de que algo os observa.",
+                    effect: () => { 
+                        gameState.sanity -= 4;
+                        updateStats();
+                        addLogEntry("Você ativou uma armadilha espiritual. -4 Sanidade.");
+                    }
+                }
+            },
+            4: {
+                title: "Cena 4 – Orfanato Limoeiro Podre",
+                subtitle: "Após a descoberta na Casa da Colina, o grupo se dirige ao Orfanato Limoeiro Podre...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "Após a descoberta na Casa da Colina, o grupo se dirige ao Orfanato Limoeiro Podre — um prédio antigo, com janelas quebradas e portas rangendo, situado na periferia da cidade. Dizem que, quando o orfanato fechou, crianças começaram a desaparecer, e vozes sussurrantes ecoam à noite.\n\nO céu está nublado, com nuvens pesadas, e o vento carrega um cheiro de podridão misturado a terra úmida. Vocês sentem que a energia ali está desequilibrada, e o medo é quase palpável. Dentro do orfanato, ecoa uma canção infantil — uma melodia distorcida e inquietante.",
+                choices: [
+                    { text: "Entrar imediatamente no prédio apesar do medo (Teste de Coragem CD 14)", action: "courage", dc: 14 },
+                    { text: "Cercar o orfanato para encontrar uma entrada mais segura", action: "careful" }
+                ],
+                characters: ["christofer", "kaizer", "vv"],
+                success: {
+                    description: "Entra com firmeza, encontrando uma sala secreta cheia de símbolos e um antigo diário de uma das crianças desaparecidas, com anotações enigmáticas.",
+                    effect: () => { 
+                        addLogEntry("Você encontrou o diário de uma criança desaparecida com pistas importantes.");
+                    }
+                },
+                failure: {
+                    description: "O medo toma conta; ao entrar, vozes infantis perturbadoras e sombras surgem, causando ferimentos físicos e psicológicos.",
+                    effect: () => { 
+                        gameState.health -= 3;
+                        gameState.sanity -= 3;
+                        updateStats();
+                        addLogEntry("Você foi atacado por sombras. -3 Saúde, -3 Sanidade.");
+                    }
+                }
+            },
+            5: {
+                title: "Cena 5 – Lago Vinteiro",
+                subtitle: "O grupo se aproxima do Lago Vinteiro, uma área pantanosa onde se acredita haver uma antiga plataforma...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "O grupo se aproxima do Lago Vinteiro, uma área pantanosa onde se acredita haver uma antiga plataforma usada para rituais aquáticos. A névoa é ainda mais densa, e a água parece quase negra sob a pouca luz.\n\nNo centro do lago, uma plataforma de pedra emerge, com um altar coberto de musgo e inscrições misteriosas. O silêncio é absoluto, como se a própria natureza estivesse segurando a respiração.",
+                choices: [
+                    { text: "Atravessar o lago sem fazer barulho (Teste de Destreza CD 15)", action: "dexterity", dc: 15 },
+                    { text: "Usar equipamentos improvisados para criar uma distração", action: "distraction" }
+                ],
+                characters: ["christofer", "kaizer", "vv"],
+                success: {
+                    description: "Atravessam em silêncio e descobrem uma escada secreta que leva a um templo submerso.",
+                    effect: () => { 
+                        addLogEntry("Você atravessou o lago em silêncio e encontrou a entrada do templo submerso.");
+                    }
+                },
+                failure: {
+                    description: "O barulho desperta uma criatura da lama, que os ataca, causando ferimentos e aumentando a tensão.",
+                    effect: () => { 
+                        gameState.health -= 5;
+                        updateStats();
+                        addLogEntry("Você foi atacado por uma criatura da lama. -5 Saúde.");
+                    }
+                }
+            },
+            6: {
+                title: "Cena 6 – Convergência",
+                subtitle: "Finalmente, o grupo confronta Érico Luan, o líder do culto e ex-agente da SILK...",
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxNzFmMjEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+TG9hZGluZyBTY2VuZS4uLjwvdGV4dD48L3N2Zz4=",
+                description: "Finalmente, o grupo confronta Érico Luan, o líder do culto e ex-agente da SILK que desapareceu anos atrás. Ele está na entrada do templo submerso, em meio a cultistas, e segura um artefato antigo e pulsante.\n\nÉrico fala com voz rouca e olhos vidrados: 'Vocês não entendem. Ia-Merkha é a verdade. A Mãe que nos dará um novo começo, um ciclo eterno de poder e renascimento.'",
+                choices: [
+                    { text: "Destruir o artefato e acabar com o ritual (Teste Decisivo CD 18)", action: "destroy", dc: 18 },
+                    { text: "Usar o artefato para tentar controlar Ia-Merkha", action: "control" },
+                    { text: "Aceitar o pacto proposto por Érico e se unir ao culto", action: "join" }
+                ],
+                characters: ["christofer", "kaizer", "vv", "erico"],
+                success: {
+                    description: "Vocês conseguem destruir o artefato, interrompendo o ritual. A cidade é salva, mas com perdas pessoais.",
+                    effect: () => { 
+                        addLogEntry("Você destruiu o artefato e interrompeu o ritual. A cidade está salva, mas a um custo.");
+                        setTimeout(() => {
+                            alert("FIM DO JOGO: Vitória Amarga\n\nVocê salvou Carpa Grande, mas a um custo pessoal. A SILK reconhece seu sacrifício, mas as cicatrizes permanecerão.");
+                        }, 1000);
+                    }
+                },
+                failure: {
+                    description: "A Mãe desperta. A cidade é engolida e a corrupção se espalha pelo mundo. Vocês tornam-se fugitivos, caçados pelo culto e pelas forças sombrias.",
+                    effect: () => { 
+                        addLogEntry("Você falhou em impedir o ritual. A Mãe desperta e a corrupção se espalha.");
+                        setTimeout(() => {
+                            alert("FIM DO JOGO: Derrota Catastrófica\n\nIa-Merkha foi libertada. Carpa Grande foi engolida pela névoa, e você agora é caçado pelas forças que ajudou a despertar.");
+                        }, 1000);
+                    }
+                }
+            }
+        };
+
+        // Character Sprites
+        const characters = {
+            christofer: {
+                name: "Cristofer",
+                description: "Impaciente e direto, mas leal ao grupo.",
+                sprite: "🧔",
+                color: "bg-blue-900"
+            },
+            kaizer: {
+                name: "Kaizer",
+                description: "Calmo e analítico, o cérebro do grupo.",
+                sprite: "👨‍💼",
+                color: "bg-gray-700"
+            },
+            vv: {
+                name: "VV",
+                description: "Você, o protagonista desta história sombria.",
+                sprite: "👤",
+                color: "bg-purple-900"
+            },
+            iraci: {
+                name: "Dona Iraci",
+                description: "Uma senhora marcada pela dor do desaparecimento do neto.",
+                sprite: "👵",
+                color: "bg-gray-600"
+            },
+            erico: {
+                name: "Érico Luan",
+                description: "Ex-agente da SILK, agora líder do culto a Ia-Merkha.",
+                sprite: "🧛",
+                color: "bg-red-900"
+            }
+        };
+
+        // Initialize the game
+        function initGame() {
+            loadScene(gameState.currentScene);
+            updateStats();
+        }
+
+        // Load a scene
+        function loadScene(sceneId) {
+            gameState.currentScene = sceneId;
+            const scene = scenes[sceneId];
+            
+            // Update scene elements
+            document.getElementById('scene-title').textContent = scene.title;
+            document.getElementById('scene-subtitle').textContent = scene.subtitle;
+            document.getElementById('scene-image').src = scene.image;
+            document.getElementById('scene-description').innerHTML = scene.description.split('\n').map(p => `<p class="mb-2">${p}</p>`).join('');
+            
+            // Clear previous choices
+            const choicesContainer = document.getElementById('player-choices');
+            choicesContainer.innerHTML = '';
+            
+            // Add new choices
+            scene.choices.forEach((choice, index) => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = 'choice-btn bg-gray-800 hover:bg-purple-900 text-gray-200 py-3 px-4 rounded-lg border border-gray-700 transition-all duration-300 hover:border-purple-500 hover:text-purple-300';
+                choiceBtn.textContent = choice.text;
+                choiceBtn.onclick = () => makeChoice(index);
+                choicesContainer.appendChild(choiceBtn);
+            });
+            
+            // Hide dice roll and continue sections
+            document.getElementById('dice-roll').classList.add('hidden');
+            document.getElementById('continue-section').classList.add('hidden');
+            
+            // Update character sprites
+            const spritesContainer = document.getElementById('character-sprites');
+            spritesContainer.innerHTML = '';
+            
+            scene.characters.forEach(charId => {
+                const char = characters[charId];
+                const charElement = document.createElement('div');
+                charElement.className = `character ${char.color} w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg`;
+                charElement.textContent = char.sprite;
+                charElement.title = `${char.name}\n${char.description}`;
+                spritesContainer.appendChild(charElement);
+            });
+            
+            // Add to game log
+            addLogEntry(`Chegou à cena: ${scene.title}`);
+        }
+
+        // Make a choice
+        function makeChoice(choiceIndex) {
+            const scene = scenes[gameState.currentScene];
+            const choice = scene.choices[choiceIndex];
+            
+            if (choice.action && choice.dc) {
+                // This is a test with DC
+                gameState.testDC = choice.dc;
+                gameState.testType = choice.action;
+                
+                // Roll the dice (1d20 + modifier)
+                const modifier = getModifierForTest(choice.action);
+                const roll = Math.floor(Math.random() * 20) + 1;
+                const total = roll + modifier;
+                
+                gameState.diceRoll = roll;
+                gameState.diceModifier = modifier;
+                gameState.testSuccess = total >= choice.dc;
+                
+                // Show dice roll
+                const diceRollElement = document.getElementById('dice-roll');
+                diceRollElement.classList.remove('hidden');
+                
+                document.getElementById('dice-result').textContent = roll;
+                document.getElementById('total-value').textContent = total;
+                
+                // Show outcome
+                const outcomeElement = document.getElementById('dice-outcome');
+                if (total >= choice.dc) {
+                    outcomeElement.textContent = `Sucesso! (${total} >= ${choice.dc})`;
+                    outcomeElement.className = 'mt-2 text-green-400 font-medium';
+                } else {
+                    outcomeElement.textContent = `Falha! (${total} < ${choice.dc})`;
+                    outcomeElement.className = 'mt-2 text-red-400 font-medium';
+                }
+                
+                // Show continue button
+                document.getElementById('continue-section').classList.remove('hidden');
+                document.getElementById('continue-btn').onclick = () => processTestResult();
+                
+                // Disable other choices
+                const choiceButtons = document.querySelectorAll('.choice-btn');
+                choiceButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-50');
+                });
+            } else {
+                // Simple choice without test
+                processSimpleChoice(choice.action);
+            }
+        }
+
+        // Get modifier for test type
+        function getModifierForTest(testType) {
+            switch(testType) {
+                case 'perception': return 2;
+                case 'persuasion': return 3;
+                case 'investigation': return 4;
+                case 'courage': return 2;
+                case 'dexterity': return 3;
+                case 'destroy': return gameState.attackBonus;
+                default: return 0;
+            }
+        }
+
+        // Process test result
+        function processTestResult() {
+            const scene = scenes[gameState.currentScene];
+            
+            if (gameState.testSuccess) {
+                // Success outcome
+                document.getElementById('scene-description').innerHTML = `<p class="mb-2">${scene.success.description}</p>`;
+                if (scene.success.effect) scene.success.effect();
+            } else {
+                // Failure outcome
+                document.getElementById('scene-description').innerHTML = `<p class="mb-2">${scene.failure.description}</p>`;
+                if (scene.failure.effect) scene.failure.effect();
+            }
+            
+            // Hide dice roll and continue button
+            document.getElementById('dice-roll').classList.add('hidden');
+            document.getElementById('continue-section').classList.add('hidden');
+            
+            // Enable choices again or proceed to next scene
+            if (gameState.currentScene < Object.keys(scenes).length) {
+                const choiceButtons = document.querySelectorAll('.choice-btn');
+                choiceButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                });
+            } else {
+                // End of game
+                setTimeout(() => {
+                    alert("FIM DO JOGO\n\nSua jornada em Carpa Grande chegou ao fim. As consequências de suas ações ecoarão por muito tempo...");
+                }, 1000);
+            }
+        }
+
+        // Process simple choice
+        function processSimpleChoice(action) {
+            const scene = scenes[gameState.currentScene];
+            
+            switch(action) {
+                case 'ignore':
+                    addLogEntry("Você ignorou os sinais de perigo. O grupo está menos preparado.");
+                    break;
+                case 'respect':
+                    gameState.hasAmulet = true;
+                    gameState.inventory.push("Amuleto de Ossos");
+                    addLogEntry("Dona Iraci lhe deu um amuleto de proteção contra possessões.");
+                    break;
+                case 'caution':
+                    gameState.sanity -= 1;
+                    updateStats();
+                    addLogEntry("Você foi cauteloso, mas o ambiente afetou sua sanidade. -1 Sanidade.");
+                    break;
+                case 'distraction':
+                    gameState.health -= 2;
+                    updateStats();
+                    addLogEntry("Sua distração funcionou, mas você se machucou no processo. -2 Saúde.");
+                    break;
+                case 'control':
+                    if (Math.random() > 0.5) {
+                        addLogEntry("Você conseguiu controlar parte do poder de Ia-Merkha, mas a que custo?");
+                        setTimeout(() => {
+                            alert("FIM DO JOGO: Poder Corrompido\n\nVocê ganhou poder sobre o oculto, mas perdeu parte de sua humanidade. A SILK agora o vê como uma ameaça.");
+                        }, 1000);
+                    } else {
+                        addLogEntry("Você falhou em controlar o poder e foi consumido por ele.");
+                        setTimeout(() => {
+                            alert("FIM DO JOGO: Corrupção Total\n\nIa-Merkha tomou controle de seu corpo e mente. Você agora é um servo do culto.");
+                        }, 1000);
+                    }
+                    return;
+                case 'join':
+                    addLogEntry("Você se juntou ao culto de Ia-Merkha, traindo seus companheiros.");
+                    setTimeout(() => {
+                        alert("FIM DO JOGO: Traição\n\nVocê abraçou as trevas e agora serve a Ia-Merkha. Seus antigos aliados se tornaram suas vítimas.");
+                    }, 1000);
+                    return;
+            }
+            
+            // Proceed to next scene if this was the last choice
+            if (gameState.currentScene < Object.keys(scenes).length) {
+                setTimeout(() => {
+                    loadScene(gameState.currentScene + 1);
+                }, 1500);
+            }
+        }
+
+        // Go to specific scene (from map)
+        function goToScene(sceneId) {
+            if (sceneId >= 1 && sceneId <= Object.keys(scenes).length) {
+                loadScene(sceneId);
+                addLogEntry(`Viajou para: ${scenes[sceneId].title}`);
+            }
+        }
+
+        // Update stats display
+        function updateStats() {
+            document.getElementById('health-value').textContent = `${gameState.health}/${gameState.maxHealth}`;
+            document.getElementById('sanity-value').textContent = `${gameState.sanity}/${gameState.maxSanity}`;
+            
+            const healthPercent = (gameState.health / gameState.maxHealth) * 100;
+            const sanityPercent = (gameState.sanity / gameState.maxSanity) * 100;
+            
+            document.getElementById('health-bar').style.width = `${healthPercent}%`;
+            document.getElementById('sanity-bar').style.width = `${sanityPercent}%`;
+            
+            // Change color based on level
+            if (healthPercent < 30) {
+                document.getElementById('health-bar').className = 'h-full w-full bg-red-700';
+            } else if (healthPercent < 60) {
+                document.getElementById('health-bar').className = 'h-full w-full bg-orange-500';
+            } else {
+                document.getElementById('health-bar').className = 'h-full w-full bg-red-500';
+            }
+            
+            if (sanityPercent < 30) {
+                document.getElementById('sanity-bar').className = 'h-full w-full bg-purple-700';
+            } else if (sanityPercent < 60) {
+                document.getElementById('sanity-bar').className = 'h-full w-full bg-indigo-500';
+            } else {
+                document.getElementById('sanity-bar').className = 'h-full w-full bg-blue-500';
+            }
+        }
+
+        // Add entry to game log
+        function addLogEntry(text) {
+            const logElement = document.getElementById('game-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry border-b border-gray-800 pb-2';
+            entry.textContent = text;
+            logElement.insertBefore(entry, logElement.firstChild);
+            
+            // Auto-scroll to top
+            logElement.scrollTop = 0;
+        }
+
+        // Initialize the game when page loads
+        window.onload = initGame;
+    </script>
+</body>
+</html>
