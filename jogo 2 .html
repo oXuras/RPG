@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecos de Carpa Grande</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap');
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: #0a0a0a;
+            color: #e2e2e2;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IjEzMCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEiPjwvcGF0aD4KPC9zdmc+');
+        }
+        
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .character-card {
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: #666;
+        }
+        
+        .scene-text {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .code-block {
+            font-family: 'Special Elite', cursive;
+            background-color: #111;
+            border-left: 3px solid #8b0000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #333;
+        }
+        
+        .map-location {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #8b0000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .map-location:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: #ff0000;
+        }
+        
+        .map-tooltip {
+            position: absolute;
+            background-color: rgba(0,0,0,0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .dice-roll {
+            animation: diceRoll 0.5s ease-out;
+        }
+        
+        @keyframes diceRoll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .stress-bar {
+            height: 10px;
+            background: linear-gradient(to right, #4a0000, #8b0000, #ff0000);
+        }
+        
+        .paranormal-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 100;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #0000ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            10% { clip: rect(112px, 9999px, 76px, 0); }
+            20% { clip: rect(85px, 9999px, 77px, 0); }
+            30% { clip: rect(27px, 9999px, 97px, 0); }
+            40% { clip: rect(64px, 9999px, 98px, 0); }
+            50% { clip: rect(61px, 9999px, 85px, 0); }
+            60% { clip: rect(99px, 9999px, 114px, 0); }
+            70% { clip: rect(34px, 9999px, 115px, 0); }
+            80% { clip: rect(98px, 9999px, 129px, 0); }
+            90% { clip: rect(43px, 9999px, 96px, 0); }
+            100% { clip: rect(82px, 9999px, 64px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 119px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            20% { clip: rect(101px, 9999px, 87px, 0); }
+            30% { clip: rect(80px, 9999px, 103px, 0); }
+            40% { clip: rect(110px, 9999px, 117px, 0); }
+            50% { clip: rect(104px, 9999px, 69px, 0); }
+            60% { clip: rect(62px, 9999px, 101px, 0); }
+            70% { clip: rect(51px, 9999px, 114px, 0); }
+            80% { clip: rect(127px, 9999px, 80px, 0); }
+            90% { clip: rect(71px, 9999px, 75px, 0); }
+            100% { clip: rect(108px, 9999px, 111px, 0); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #8b0000;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b0000 }
+        }
+    </style>
+</head>
+<body>
+    <div class="paranormal-effect" id="paranormalEffect"></div>
+    
+    <div class="game-container p-4">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-6xl font-bold mb-2 text-red-700 glitch" data-text="Ecos de Carpa Grande">Ecos de Carpa Grande</h1>
+            <p class="text-lg italic text-gray-400">Uma investigação paranormal da organização SILK</p>
+        </header>
+        
+        <!-- Game Navigation -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button id="btnIntro" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition">Introdução</button>
+            <button id="btnCharacters" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition">Personagens</button>
+            <button id="btnMap" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition">Mapa</button>
+            <button id="btnScenes" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition">Cenas</button>
+            <button id="btnPlay" class="px-4 py-2 bg-red-800 hover:bg-red-700 rounded transition font-bold">Jogar</button>
+        </div>
+        
+        <!-- Introduction Section -->
+        <section id="introSection" class="mb-12 hidden">
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 text-red-600 border-b border-gray-700 pb-2">Introdução</h2>
+                <div class="scene-text">
+                    <p class="mb-4">Você foi enviado para uma cidade pequena conhecida como Carpa Grande, pela organização SILK, responsável por investigar o paranormal. A cidade sofre com muitos desaparecimentos, mas um caso chamou atenção: um pai foi brutalmente assassinado em casa.</p>
+                    <p class="mb-4">Na cena do crime, símbolos escritos em latim — <em class="text-red-400">Sanctus redibit</em> — estavam escritos com sangue, e marcas de garras nas paredes. A esposa e os filhos desapareceram sem deixar rastros. Sem arrombamento, sem testemunhas. Apenas silêncio e cheiro de queimado impregnando o ar.</p>
+                    <p class="mb-4">Você chegou com dois amigos que considera irmãos, com quem já fez três missões.</p>
+                    <div class="code-block my-6">
+                        <p class="text-red-400">// ARQUIVO SILK #4478-ECG</p>
+                        <p class="text-red-400">// CLASSIFICAÇÃO: NÍVEL 4 - PERIGO PARANORMAL</p>
+                        <p class="text-red-400">// LOCAL: CARPA GRANDE - ZONA RURAL</p>
+                        <p class="text-red-400">// SUSPEITA: ATIVIDADE DOS HEREGES DO VÉU</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Characters Section -->
+        <section id="charactersSection" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold mb-6 text-red-600 border-b border-gray-700 pb-2">Personagens</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Kaizer -->
+                <div class="character-card bg-gray-900 p-4 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center text-2xl mr-4">K</div>
+                        <h3 class="text-xl font-bold text-red-500">Kaizer</h3>
+                    </div>
+                    <p class="text-gray-300 mb-3">O cérebro do grupo. Inteligente, paranoico, sempre em alerta.</p>
+                    <div class="text-sm text-gray-400 mb-3">
+                        <p><i class="fas fa-user mr-2"></i> Cabelos longos, postura curvada, olheiras profundas</p>
+                        <p><i class="fas fa-book mr-2"></i> Vive cercado de anotações e teorias conspiratórias</p>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded">
+                        <p class="text-yellow-400 italic">"Quando ele fala, você sabe que deve ouvir — mesmo que pareça loucura, às vezes é justamente isso que salva vidas."</p>
+                    </div>
+                </div>
+                
+                <!-- Cristofer -->
+                <div class="character-card bg-gray-900 p-4 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center text-2xl mr-4">C</div>
+                        <h3 class="text-xl font-bold text-red-500">Cristofer</h3>
+                    </div>
+                    <p class="text-gray-300 mb-3">Ex-militar. 1,85m, musculoso, cicatriz no rosto e sotaque americano.</p>
+                    <div class="text-sm text-gray-400 mb-3">
+                        <p><i class="fas fa-fist-raised mr-2"></i> Resolve as coisas com as mãos antes das palavras</p>
+                        <p><i class="fas fa-shield-alt mr-2"></i> Fiel, impulsivo, instinto de sobrevivência afiado</p>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded">
+                        <p class="text-yellow-400 italic">"Se acha que alguém está em perigo, mergulha no fogo. Já foi gravemente ferido, mas nunca recuou."</p>
+                    </div>
+                </div>
+                
+                <!-- VV (Player) -->
+                <div class="character-card bg-gray-900 p-4 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center text-2xl mr-4">V</div>
+                        <h3 class="text-xl font-bold text-red-500">Você (VV)</h3>
+                    </div>
+                    <p class="text-gray-300 mb-3">O centro entre razão e ação. Analítico, direto, estratégico.</p>
+                    <div class="text-sm text-gray-400 mb-3">
+                        <p><i class="fas fa-brain mr-2"></i> Aprendeu a não confiar no que vê</p>
+                        <p><i class="fas fa-eye mr-2"></i> Experiência com distorções do Outro Lado</p>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded">
+                        <p class="text-yellow-400 italic">"No mundo da SILK, o que você vê quase nunca é real. Reconhece quando a membrana da realidade está frágil. E agora está sentindo isso de novo."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NPCs -->
+            <h3 class="text-xl font-bold mt-10 mb-4 text-red-500">Personagens Secundários</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Mirela -->
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-bold text-red-400">Mirela</h4>
+                    <p class="text-sm text-gray-300">Atendente do Carpa Transportes</p>
+                    <p class="text-xs text-gray-400 mt-1">"Mulher de estatura média, pele clara, cabelo castanho preso num coque simples, avental sobre um vestido rústico, e uma pena atrás da orelha."</p>
+                </div>
+                
+                <!-- Claudete -->
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-bold text-red-400">Claudete</h4>
+                    <p class="text-sm text-gray-300">Bibliotecária</p>
+                    <p class="text-xs text-gray-400 mt-1">"Senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura. Parece saber mais do que diz."</p>
+                </div>
+                
+                <!-- Segfredo -->
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-bold text-red-400">Segfredo da Floresta</h4>
+                    <p class="text-sm text-gray-300">Entidade Antinatural</p>
+                    <p class="text-xs text-gray-400 mt-1">"Figura coberta por cascas, galhos e runas em carne viva. Seus olhos negros parecem sugar a luz. Kaizer diz que ele é 'um algoritmo ancestral codificado no medo'."</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section id="mapSection" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold mb-6 text-red-600 border-b border-gray-700 pb-2">Mapa de Carpa Grande</h2>
+            
+            <div class="map-container bg-gray-900 rounded-lg shadow-lg h-96 mb-6">
+                <img src="carpa_grande_map.jpg" alt="Mapa de Carpa Grande" class="w-full h-full object-cover opacity-80">
+                <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                
+                <!-- Map Locations -->
+                <div class="map-location" style="top: 30%; left: 25%;" data-name="Carpa Transportes" data-desc="Local de aluguel de veículos"></div>
+                <div class="map-location" style="top: 40%; left: 40%;" data-name="Fernandinho's Comidas" data-desc="Restaurante local"></div>
+                <div class="map-location" style="top: 60%; left: 35%;" data-name="Biblioteca Municipal" data-desc="Arquivos históricos"></div>
+                <div class="map-location" style="top: 20%; left: 55%;" data-name="Floresta Maldita" data-desc="Local dos desaparecimentos"></div>
+                <div class="map-location" style="top: 70%; left: 20%;" data-name="Cena do Crime" data-desc="Casa da família desaparecida"></div>
+                <div class="map-location" style="top: 50%; left: 70%;" data-name="Clareira dos Ecos" data-desc="Local dos rituais"></div>
+                
+                <div class="map-tooltip" id="mapTooltip"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="font-bold text-red-500 mb-2">Locais Importantes</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><span class="text-red-400">■</span> Carpa Transportes - Aluguel do Gol azul</li>
+                        <li><span class="text-red-400">■</span> Fernandinho's Comidas - Restaurante local</li>
+                        <li><span class="text-red-400">■</span> Biblioteca - Arquivos confidenciais</li>
+                        <li><span class="text-red-400">■</span> Floresta Maldita - Foco dos desaparecimentos</li>
+                        <li><span class="text-red-400">■</span> Clareira dos Ecos - Local dos rituais</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="font-bold text-red-500 mb-2">Pistas Encontradas</h3>
+                    <ul class="text-sm space-y-2" id="cluesList">
+                        <li><span class="text-green-400">✓</span> Símbolos em latim: "Sanctus redibit"</li>
+                        <li><span class="text-green-400">✓</span> Marcas de garras nas paredes</li>
+                        <li><span class="text-green-400">✓</span> Cheiro de queimado no ar</li>
+                        <li class="text-gray-500"><span class="text-gray-500">✗</span> Localização exata da clareira</li>
+                        <li class="text-gray-500"><span class="text-gray-500">✗</span> Identidade dos cultistas</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h3 class="font-bold text-red-500 mb-2">Status da Missão</h3>
+                    <div class="mb-3">
+                        <p class="text-sm mb-1">Progresso:</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5">
+                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 30%"></div>
+                        </div>
+                        <p class="text-xs text-right mt-1">30% completo</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-sm mb-1">Stress Paranormal:</p>
+                        <div class="stress-bar rounded-full h-2.5 w-full">
+                            <div class="bg-gray-900 h-2.5 rounded-full" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-right mt-1">2/10 pontos</p>
+                    </div>
+                    <p class="text-xs text-yellow-400">"A membrana da realidade está frágil aqui..."</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Scenes Section -->
+        <section id="scenesSection" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold mb-6 text-red-600 border-b border-gray-700 pb-2">Cenas Principais</h2>
+            
+            <div class="space-y-8">
+                <!-- Scene 1 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-red-500 mb-3 flex items-center">
+                        <span class="bg-red-900 px-3 py-1 rounded-full text-sm mr-3">1</span>
+                        Chegada em Carpa Grande
+                    </h3>
+                    <div class="scene-text">
+                        <p class="mb-3">Vocês chegam em Carpa Grande e caminham pelas ruas silenciosas. A cidade parece calma demais — como se o tempo ali fluísse diferente, os olhares durassem mais.</p>
+                        <p class="mb-3">Vocês vão até o Carpa Transportes para alugar um carro. Cristofer quer um carro esportivo. Mirela, a atendente, aparece: mulher de estatura média, pele clara, cabelo castanho preso num coque simples, avental sobre um vestido rústico, e uma pena atrás da orelha.</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                            <p class="font-bold text-red-400">Cristofer (com sotaque):</p>
+                            <p class="mb-2">"A gente quer um carro esportivo."</p>
+                            <p class="font-bold text-red-400">Mirela (sorrindo meio sem graça):</p>
+                            <p class="mb-2">"Esportivo? Aqui só tem um Gol azul pra alugar."</p>
+                            <p class="font-bold text-red-400">Kaizer (calmo):</p>
+                            <p>"O Gol serve, alugamos e o VV paga por três semanas."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Scene 2 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-red-500 mb-3 flex items-center">
+                        <span class="bg-red-900 px-3 py-1 rounded-full text-sm mr-3">2</span>
+                        O Restaurante e os Segredos
+                    </h3>
+                    <div class="scene-text">
+                        <p class="mb-3">Cristofer está com fome e vocês vão até o restaurante próximo, o Fernandinho's Comidas. Na calçada, um grupo de velhos fala baixinho.</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 italic text-sm">
+                            <p>"A floresta voltou a gritar... igual antes, nos anos 90..."</p>
+                            <p>"Culpam aquela gangue nova... mas ninguém vê eles à noite."</p>
+                            <p>"O pior... é que os gritos não parecem humanos..."</p>
+                        </div>
+                        <p class="mb-3">Os rostos dos idosos são de quem já perdeu a luta — resignação, medo misturado com cansaço.</p>
+                        <p class="mb-3">Kaizer para e cochicha: "Aqui pode estar ligado aos Hereges do Véu... Eles agem em áreas isoladas, sempre ligados a desaparecimentos."</p>
+                    </div>
+                </div>
+                
+                <!-- Scene 3 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-red-500 mb-3 flex items-center">
+                        <span class="bg-red-900 px-3 py-1 rounded-full text-sm mr-3">3</span>
+                        A Biblioteca e os Arquivos Proibidos
+                    </h3>
+                    <div class="scene-text">
+                        <p class="mb-3">Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.</p>
+                        <p class="mb-3">Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                            <p class="font-bold text-red-400">Claudete:</p>
+                            <p>"O que procuram pode ser encontrado... mas talvez não gostem do que vão achar."</p>
+                        </div>
+                        <p class="mb-3">Ela os leva a uma sala trancada nos fundos: "Aqui ficam os arquivos históricos. Poucos se atrevem a ir lá."</p>
+                    </div>
+                </div>
+                
+                <!-- Scene 4 -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-red-500 mb-3 flex items-center">
+                        <span class="bg-red-900 px-3 py-1 rounded-full text-sm mr-3">4</span>
+                        A Clareira dos Ecos
+                    </h3>
+                    <div class="scene-text">
+                        <p class="mb-3">A vegetação abre num círculo perfeito. A lua não ilumina aqui, mas ainda assim o chão brilha com um brilho úmido. O altar ao centro pulsa com marcas vivas.</p>
+                        <p class="mb-3">Kaizer mostra um bilhete:</p>
+                        <div class="code-block my-4">
+                            <p>CÓDIGO HEX: 53 69 6E 6E 65 72 20 4C 61 73 20 52 6F 63 61 73</p>
+                            <p>CLUE 1: Encontrai a letra que caminha sem pés,</p>
+                            <p>CLUE 2: A palavra que existe só na ausência de som,</p>
+                            <p>CLUE 3: E o número que vive na linha do esquecimento.</p>
+                        </div>
+                        <p class="mb-3">Você percebe que se refere a uma formação rochosa que aparece nos mapas antigos de Carpa Grande.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Play Section -->
+        <section id="playSection" class="mb-12 hidden">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Main Game Area -->
+                <div class="lg:w-3/4">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-lg mb-6">
+                        <h2 class="text-2xl font-bold mb-4 text-red-600 border-b border-gray-700 pb-2">Cena Atual</h2>
+                        
+                        <div id="currentScene" class="scene-text">
+                            <p class="mb-4">A van preta da SILK estaciona em frente ao escritório do Carpa Transportes. O local está iluminado por uma lâmpada tremeluzente. Dentro, Mirela ajeita os papéis na mesa, seu rosto cansado mas gentil. Ela observa o grupo com um misto de curiosidade e receio.</p>
+                            
+                            <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                                <p class="font-bold text-red-400">Cristofer (impaciente, franzindo a testa):</p>
+                                <p class="mb-2">"A gente precisa de um carro rápido. Algo que aguente essa estrada e não trave na primeira curva."</p>
+                                <p class="font-bold text-red-400">Mirela (respira fundo, tentando esconder a ansiedade):</p>
+                                <p class="mb-2">"Esportivo? Vocês estão longe disso por aqui. Tenho só um Gol azul velho, mas é confiável. Querem?"</p>
+                                <p class="font-bold text-red-400">Kaizer (calmo, tentando mediar):</p>
+                                <p>"Vamos ficar com o Gol, é suficiente por enquanto. O VV vai pagar por três semanas."</p>
+                            </div>
+                            
+                            <p class="mb-4">Mirela acena, mas seus olhos desviam para a janela com um leve tremor. Antes de sair, você decide observar o ambiente com mais atenção.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Choices -->
+                    <div id="choicesContainer" class="bg-gray-900 p-6 rounded-lg shadow-lg mb-6">
+                        <h3 class="text-xl font-bold mb-4 text-red-500">O que você faz?</h3>
+                        <div class="space-y-3">
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="perceptionTest">Fazer um Teste de Percepção (CD 12)</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="acceptGol">Aceitar o Gol azul e seguir em frente</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="askAboutForest">Perguntar a Mirela sobre a floresta</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Dice Roller -->
+                    <div id="diceRoller" class="bg-gray-900 p-6 rounded-lg shadow-lg hidden">
+                        <h3 class="text-xl font-bold mb-4 text-red-500">Teste de Percepção (CD 12)</h3>
+                        <p class="mb-4">Você observa cuidadosamente o ambiente. O que você nota?</p>
+                        <ul class="list-disc pl-5 mb-4">
+                            <li>Pequenas sombras que parecem dançar entre as casas</li>
+                            <li>Símbolos antigos riscados em paredes e postes</li>
+                            <li>Um odor metálico vindo da floresta</li>
+                        </ul>
+                        <p class="mb-4">Role um D20 e adicione seu modificador de Percepção:</p>
+                        
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-center">
+                                <div id="diceResult" class="text-5xl font-bold my-2">?</div>
+                                <button id="rollDiceBtn" class="px-6 py-2 bg-red-800 hover:bg-red-700 rounded font-bold">Rolar Dado</button>
+                            </div>
+                            <div class="text-sm">
+                                <p><span class="font-bold">CD (Dificuldade):</span> 12</p>
+                                <p><span class="font-bold">Seu modificador:</span> +2</p>
+                                <p><span class="font-bold">Sucesso:</span> Alugam um Fiesta antigo</p>
+                                <p><span class="font-bold">Falha:</span> Só o Gol mesmo</p>
+                            </div>
+                        </div>
+                        
+                        <div id="rollResult" class="hidden p-4 rounded-lg bg-gray-800 border-l-4 border-red-700">
+                            <p id="rollResultText" class="font-bold"></p>
+                            <button id="continueBtn" class="mt-3 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded">Continuar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Stats -->
+                <div class="lg:w-1/4">
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-lg sticky top-4">
+                        <h2 class="text-xl font-bold mb-4 text-red-600 border-b border-gray-700 pb-2">Status do Jogo</h2>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-red-500 mb-2">Personagens</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-red-900 rounded-full flex items-center justify-center text-xs mr-2">K</div>
+                                    <div>
+                                        <p class="text-sm font-bold">Kaizer</p>
+                                        <p class="text-xs text-gray-400">Vida: 12/12 | Sanidade: 8/10</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-red-900 rounded-full flex items-center justify-center text-xs mr-2">C</div>
+                                    <div>
+                                        <p class="text-sm font-bold">Cristofer</p>
+                                        <p class="text-xs text-gray-400">Vida: 15/15 | Sanidade: 6/10</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-red-900 rounded-full flex items-center justify-center text-xs mr-2">V</div>
+                                    <div>
+                                        <p class="text-sm font-bold">Você (VV)</p>
+                                        <p class="text-xs text-gray-400">Vida: 10/10 | Sanidade: 9/10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-red-500 mb-2">Stress Paranormal</h3>
+                            <div class="stress-bar rounded-full h-3 w-full mb-1">
+                                <div class="bg-gray-900 h-3 rounded-full" style="width: 70%"></div>
+                            </div>
+                            <p class="text-xs text-right">2/10 pontos</p>
+                            <p class="text-xs text-yellow-400 mt-1">"Você sente que a realidade está mais fina aqui..."</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-bold text-red-500 mb-2">Pistas Encontradas</h3>
+                            <ul class="text-xs space-y-1">
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-1">✓</span>
+                                    <span>Símbolos em sangue: "Sanctus redibit"</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-1">✓</span>
+                                    <span>Marcas de garras nas paredes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-400 mr-1">✓</span>
+                                    <span>Cheiro de queimado na cena do crime</span>
+                                </li>
+                                <li class="flex items-start text-gray-500">
+                                    <span class="mr-1">✗</span>
+                                    <span>Local da clareira ritual</span>
+                                </li>
+                                <li class="flex items-start text-gray-500">
+                                    <span class="mr-1">✗</span>
+                                    <span>Identidade dos cultistas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-red-500 mb-2">Itens no Inventário</h3>
+                            <ul class="text-xs space-y-1">
+                                <li class="flex items-start">
+                                    <span class="text-yellow-400 mr-1">■</span>
+                                    <span>Lanterna (bateria fraca)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-400 mr-1">■</span>
+                                    <span>Giz negro (para runas)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-400 mr-1">■</span>
+                                    <span>Sal consagrado</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-yellow-400 mr-1">■</span>
+                                    <span>Chaves do Gol azul</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Navigation between sections
+        document.getElementById('btnIntro').addEventListener('click', () => toggleSection('introSection'));
+        document.getElementById('btnCharacters').addEventListener('click', () => toggleSection('charactersSection'));
+        document.getElementById('btnMap').addEventListener('click', () => {
+            toggleSection('mapSection');
+            initMapTooltips();
+        });
+        document.getElementById('btnScenes').addEventListener('click', () => toggleSection('scenesSection'));
+        document.getElementById('btnPlay').addEventListener('click', () => toggleSection('playSection'));
+        
+        function toggleSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+        
+        // Initialize map tooltips
+        function initMapTooltips() {
+            const locations = document.querySelectorAll('.map-location');
+            const tooltip = document.getElementById('mapTooltip');
+            
+            locations.forEach(location => {
+                location.addEventListener('mouseenter', (e) => {
+                    const name = e.target.getAttribute('data-name');
+                    const desc = e.target.getAttribute('data-desc');
+                    
+                    tooltip.innerHTML = `<strong>${name}</strong><br>${desc}`;
+                    tooltip.style.left = `${e.clientX + 10}px`;
+                    tooltip.style.top = `${e.clientY + 10}px`;
+                    tooltip.style.opacity = '1';
+                });
+                
+                location.addEventListener('mouseleave', () => {
+                    tooltip.style.opacity = '0';
+                });
+                
+                location.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = `${e.clientX + 10}px`;
+                    tooltip.style.top = `${e.clientY + 10}px`;
+                });
+            });
+        }
+        
+        // Game logic
+        const choiceButtons = document.querySelectorAll('.choice-btn');
+        const diceRoller = document.getElementById('diceRoller');
+        const rollDiceBtn = document.getElementById('rollDiceBtn');
+        const diceResult = document.getElementById('diceResult');
+        const rollResult = document.getElementById('rollResult');
+        const rollResultText = document.getElementById('rollResultText');
+        const continueBtn = document.getElementById('continueBtn');
+        const currentScene = document.getElementById('currentScene');
+        const choicesContainer = document.getElementById('choicesContainer');
+        
+        choiceButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const scene = this.getAttribute('data-scene');
+                
+                if (scene === 'carRental') {
+                    // Show dice roller for charisma check
+                    choicesContainer.classList.add('hidden');
+                    diceRoller.classList.remove('hidden');
+                } else {
+                    // Handle other choices
+                    updateScene(scene);
+                }
+            });
+        });
+        
+        rollDiceBtn.addEventListener('click', function() {
+            // Animate dice roll
+            diceResult.classList.add('dice-roll');
+            diceResult.textContent = '...';
+            
+            // Roll after animation
+            setTimeout(() => {
+                const roll = Math.floor(Math.random() * 20) + 1;
+                const modifier = 2; // Assuming +2 charisma modifier
+                const total = roll + modifier;
+                const cd = 12;
+                
+                diceResult.textContent = roll;
+                diceResult.classList.remove('dice-roll');
+                
+                // Show result
+                rollResult.classList.remove('hidden');
+                
+                if (total >= cd) {
+                    rollResultText.textContent = `Sucesso! (${total} vs CD ${cd}) - Vocês conseguem um Fiesta antigo.`;
+                    // Store success for next scene
+                    rollResultText.setAttribute('data-result', 'success');
+                } else {
+                    rollResultText.textContent = `Falha! (${total} vs CD ${cd}) - Só o Gol azul mesmo.`;
+                    rollResultText.setAttribute('data-result', 'fail');
+                }
+            }, 1000);
+        });
+        
+        continueBtn.addEventListener('click', function() {
+            const result = rollResultText.getAttribute('data-result');
+            
+            if (result === 'success') {
+                updateScene('fiestaRental');
+            } else {
+                updateScene('golRental');
+            }
+            
+            diceRoller.classList.add('hidden');
+            choicesContainer.classList.remove('hidden');
+            rollResult.classList.add('hidden');
+        });
+        
+        function updateScene(scene) {
+            // This would be expanded with all game scenes
+            switch(scene) {
+                case 'acceptGol':
+                case 'golRental':
+                    currentScene.innerHTML = `
+                        <p class="mb-4">Vocês aceitam o Gol azul. O carro está um pouco velho, mas parece funcionar. Mirela entrega as chaves com um sorriso tenso.</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                            <p class="font-bold text-red-400">Mirela:</p>
+                            <p>"Cuidado nas estradas à noite... especialmente perto da floresta."</p>
+                        </div>
+                        <p class="mb-4">Cristofer parece desapontado, mas aceita dirigir o Gol. Kaizer já está estudando o mapa da região.</p>
+                    `;
+                    
+                    // Update choices
+                    choicesContainer.innerHTML = `
+                        <h3 class="text-xl font-bold mb-4 text-red-500">O que você faz?</h3>
+                        <div class="space-y-3">
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="goToRestaurant">Ir ao restaurante Fernandinho's Comidas</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="askAboutForest">Perguntar a Mirela sobre a floresta</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="goToCrimeScene">Ir direto para a cena do crime</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'fiestaRental':
+                    currentScene.innerHTML = `
+                        <p class="mb-4">Com algum esforço, você convence Mirela a oferecer um Fiesta antigo. O carro está melhor que o Gol, embora ainda não seja exatamente um esportivo.</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                            <p class="font-bold text-red-400">Mirela (suspirando):</p>
+                            <p>"Tá bem... mas cuidem dele. É o único que sobrou depois do último incidente."</p>
+                        </div>
+                        <p class="mb-4">Cristofer parece satisfeito com o upgrade. Kaizer já está estudando o mapa da região enquanto vocês carregam os equipamentos.</p>
+                    `;
+                    
+                    // Update choices
+                    choicesContainer.innerHTML = `
+                        <h3 class="text-xl font-bold mb-4 text-red-500">O que você faz?</h3>
+                        <div class="space-y-3">
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="goToRestaurant">Ir ao restaurante Fernandinho's Comidas</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="askAboutIncident">Perguntar a Mirela sobre o "último incidente"</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="goToLibrary">Ir direto para a biblioteca</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'goToRestaurant':
+                    currentScene.innerHTML = `
+                        <p class="mb-4">Vocês decidem parar no Fernandinho's Comidas para comer e talvez coletar informações. O restaurante é simples, com mesas de madeira desgastada e um cheiro convidativo de comida caseira.</p>
+                        <p class="mb-4">Na calçada, um grupo de idosos conversa em voz baixa. Vocês pegam fragmentos da conversa:</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 italic text-sm">
+                            <p>"A floresta voltou a gritar... igual antes, nos anos 90..."</p>
+                            <p>"Culpam aquela gangue nova... mas ninguém vê eles à noite."</p>
+                            <p>"O pior... é que os gritos não parecem humanos..."</p>
+                        </div>
+                        <p class="mb-4">Os rostos dos idosos mostram uma mistura de medo e resignação. Kaizer cochicha:</p>
+                        <div class="bg-gray-800 p-4 rounded my-4 border-l-4 border-red-700">
+                            <p class="font-bold text-red-400">Kaizer:</p>
+                            <p>"Isso pode estar ligado aos Hereges do Véu... Eles agem em áreas isoladas, sempre ligados a desaparecimentos."</p>
+                        </div>
+                    `;
+                    
+                    // Update choices
+                    choicesContainer.innerHTML = `
+                        <h3 class="text-xl font-bold mb-4 text-red-500">O que você faz?</h3>
+                        <div class="space-y-3">
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="talkToElders">Conversar com os idosos</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="orderFood">Pedir comida e observar</button>
+                            <button class="choice-btn w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded transition" data-scene="leaveRestaurant">Sair do restaurante e ir para a biblioteca</button>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    currentScene.innerHTML += `<p class="text-red-400">Cena não implementada ainda: ${scene}</p>`;
+            }
+            
+            // Re-add event listeners to new choice buttons
+            document.querySelectorAll('.choice-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const scene = this.getAttribute('data-scene');
+                    updateScene(scene);
+                });
+            });
+        }
+        
+        // Paranormal effect (appears randomly)
+        setInterval(() => {
+            if (Math.random() > 0.9) { // 10% chance
+                const effect = document.getElementById('paranormalEffect');
+                effect.style.opacity = '1';
+                setTimeout(() => {
+                    effect.style.opacity = '0';
+                }, 1000);
+            }
+        }, 10000);
+        
+        // Start with play section
+        toggleSection('playSection');
+    </script>
+</body>
+</html>
