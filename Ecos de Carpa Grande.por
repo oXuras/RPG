@@ -9,24 +9,24 @@ inclua biblioteca Util --> u
     escreva("--------------------------------------------------------------------------------\n")
     escreva("-->  Para uma melhor esperiência ative a quebra de linha nas configurações!  <--\n")
     escreva("--------------------------------------------------------------------------------\n")
-    u.aguarde(5000)
+    u.aguarde(5)
     limpa()
     escreva("-------------------------------------------------------\n")
     escreva("-->  Toda ação feita neste jogo é através da sorte  <--\n")
     escreva("-------------------------------------------------------\n")
-    u.aguarde(5000)
+    u.aguarde(5)
     limpa()
     escreva(" \nIniciando jogo")
-    u.aguarde(1000)
+    u.aguarde(1)
     limpa()
     escreva(" \nIniciando jogo.")
-    u.aguarde(1000)
+    u.aguarde(1)
     limpa()
     escreva(" \nIniciando jogo..")
-    u.aguarde(1000)
+    u.aguarde(1)
     limpa()
     escreva(" \nIniciando jogo...")
-    u.aguarde(2000)
+    u.aguarde(2)
     limpa()
     escreva("---------------------------------\n")
     escreva("Informe o nome do seu personagem: \n")
@@ -104,12 +104,13 @@ inclua biblioteca Util --> u
     
       caso 'n':
       {
+        limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva(" Vocês optam por alugar o gol mesmo.")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto (escolhaDado != 's' ou 'n')
+    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
     
 
     escreva("\nTecle Enter para continuar... ")
