@@ -1,33 +1,34 @@
 programa {
 inclua biblioteca Util --> u
   funcao inicio() {
-    caracter escolhaDado, escolhaDado1
-    cadeia nome, continuar, rolarDado , rolarDado1 , enigma01
-		inteiro hpUsuario, valorDado,valorDado1
+    caracter escolhaDado, escolhaDado1, escolhaDado2, escolhaDado3, escolhaDado4, escolhaDado5, escolhaDado6, escolhaDado7, escolhaDado8,escolhaDado9, fim
+    cadeia nome, continuar, enigma01, rolarDado , rolarDado1, rolarDado2, rolarDado3, rolarDado4, rolarDado5, rolarDado6, rolarDado7, rolarDado8,rolarDado9
+		inteiro hpUsuario, valorDado,valorDado1,valorDado2,valorDado3,valorDado4,valorDado5,valorDado6, valorDado7, valorDado8,valorDado9
     
 //Inícialização do jogo
     escreva("--------------------------------------------------------------------------------\n")
     escreva("-->  Para uma melhor esperiência ative a quebra de linha nas configurações!  <--\n")
     escreva("--------------------------------------------------------------------------------\n")
-    u.aguarde(5)
+    u.aguarde(5000)
     limpa()
     escreva("-------------------------------------------------------\n")
     escreva("-->  Toda ação feita neste jogo é através da sorte  <--\n")
     escreva("-------------------------------------------------------\n")
-    u.aguarde(5)
+    u.aguarde(5000)
     limpa()
     escreva(" \nIniciando jogo")
-    u.aguarde(1)
+    u.aguarde(1000)
     limpa()
     escreva(" \nIniciando jogo.")
-    u.aguarde(1)
+    u.aguarde(1000)
     limpa()
     escreva(" \nIniciando jogo..")
-    u.aguarde(1)
+    u.aguarde(1000)
     limpa()
     escreva(" \nIniciando jogo...")
-    u.aguarde(2)
+    u.aguarde(2000)
     limpa()
+    faca{
     escreva("---------------------------------\n")
     escreva("Informe o nome do seu personagem: \n")
     escreva("---------------------------------\n")
@@ -65,7 +66,7 @@ inclua biblioteca Util --> u
     faca{
     limpa()
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Cristofer (com sotaque): — “A gente quer um carro esportivo.”\n Mirela (sorrindo meio sem graça): — “Esportivo? Aqui só tem um Gol azul pra alugar.”\n Cristofer (fazendo cara de quem não acredita): — “Então, tá bom...”\n Kaiser (calmo): — “O Gol serve, alugamos e o ",nome," paga por três semanas.”")
+    escreva(" Cristofer (com sotaque): — “A gente quer um carro esportivo.”\n Mirela (sorrindo meio sem graça): — “Esportivo? Aqui só tem um Gol azul pra alugar.”\n Cristofer (fazendo cara de quem não acredita): — “Então, tá bom...”\n Kaiser (calmo): — “O Gol serve, alugamos e o ",nome," paga por três semanas.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     
     escreva("Você deseja fazer um teste de carisma? para tentar convencer Mirela a alugar algo melhor? (s/n) \n")
@@ -106,7 +107,7 @@ inclua biblioteca Util --> u
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Vocês optam por alugar o gol mesmo.")
+        escreva(" Vocês optam por alugar o gol mesmo.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
@@ -143,30 +144,30 @@ inclua biblioteca Util --> u
   
     
     escreva("Você deseja fazer um teste de sorte? para ver se consegue café para o Kaiser? (s/n) \n")
-    leia(escolhaDado1)
+    leia(escolhaDado2)
 
   limpa()
 //segundo teste
 
   
-    escolha(escolhaDado1){
+    escolha(escolhaDado2){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado1)
+        leia(rolarDado2)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado1 = u.sorteia(1,20)
+        valorDado2 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado1,"\n\n")
+        escreva(" Valor obtido: ",valorDado2,"\n\n")
         u.aguarde(1000)
-        se(valorDado1 >= 5)
+        se(valorDado2 >= 5)
         {
           escreva(" Sucesso: Tem café.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -181,18 +182,18 @@ inclua biblioteca Util --> u
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Não tem café.")
+        escreva(" Não tem café.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado1 != "s") e (escolhaDado1 != "n"))
+    }enquanto ((escolhaDado2 != "s") e (escolhaDado2 != "n"))
 
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Você (olhando para Kaiser): — “Achou algo?”\n Kaiser: — “Nada relacionado ainda, mas temos pelo menos a data. Precisamos ir até a biblioteca pra ver se achamos mais informações.”\n Cristofer: — “Beleza, vamos lá.”\n Vocês caminham cerca de cinco minutos. A cidade é pequena, calma demais.")
+    escreva(" Você (olhando para Kaiser): — “Achou algo?”\n Kaiser: — “Nada relacionado ainda, mas temos pelo menos a data. Precisamos ir até a biblioteca pra ver se achamos mais informações.”\n Cristofer: — “Beleza, vamos lá.”\n Vocês caminham cerca de cinco minutos. A cidade é pequena, calma demais.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
 
@@ -201,26 +202,15 @@ inclua biblioteca Util --> u
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”")
+    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-     //---------------------------------------\\--------------------------------------------------------------\\--------------------------------------
-     //--------------------------------------\\Modificar-\\--------------------------------------
-    // --------------------------------------\\--------------------------------------------------------------\\--------------------------------------
-
+    
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Claudete tira um molho de chaves antigo, as chaves tilintam com som metálico e arrastado. A mão dela treme um pouco enquanto abre a porta.\n — “Entrem... deixem a porta encostada. Se ouvirem algo estranho, não respondam.”\n Vocês descem a escada fria, o ar é pesado, cheiro de mofo e algo metálico.\n Cristofer (franze o nariz): — “Esse cheiro... é sangue velho.”\n Kaizer (baixinho): — “Ou algo bem parecido.”")
-    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-
-    escreva("\nTecle Enter para continuar... ")
-    leia(continuar)
-    limpa()
-    
-    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" O arquivo é um labirinto de estantes, caixas empilhadas, jornais antigos. Um relógio parado marca 3h37. Vocês não sabem quanto tempo aquilo ficou assim.\n Kaizer começa a folhear jornais dos anos 80. Cristofer vasculha com a lanterna. Você abre uma caixa com etiqueta: 'REGISTROS DE CASOS ESTRANHOS – CONFIDENCIAL'.\n Vários documentos, fotos borradas de símbolos riscados em árvores, pessoas desaparecidas, páginas arrancadas.\n Um papel chama sua atenção:")
+    escreva(" Claudete tira um molho de chaves antigo, as chaves tilintam com som metálico e arrastado.\n A mão dela treme um pouco enquanto abre a porta.\n — “Entrem... deixem a porta encostada. Se ouvirem algo estranho, não respondam.”\n Vocês descem a escada fria, o ar é pesado, cheiro de mofo e algo metálico.\n Cristofer (franze o nariz): — “Esse cheiro... é sangue velho.”\n Kaizer (baixinho): — “Ou algo bem parecido.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -228,7 +218,7 @@ inclua biblioteca Util --> u
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Boletim de Ocorrência - 11/11/1987 Fazenda Moura – Zona rural, limite da Floresta Maldita Desaparecimento coletivo. Família desapareceu na noite do dia 10. Três pares de sapatos alinhados na porta e símbolos queimados no chão da sala. Testemunhas ouviram “cantos” na floresta à madrugada. Caso arquivado por falta de provas.")
+    escreva(" O arquivo é um labirinto de estantes, caixas empilhadas, jornais antigos. Um relógio parado marca 3h37. Vocês não sabem quanto tempo aquilo ficou assim.\n Kaizer começa a folhear jornais dos anos 80. Cristofer vasculha com a lanterna. Você abre uma caixa com etiqueta: 'REGISTROS DE CASOS ESTRANHOS – CONFIDENCIAL'.\n Vários documentos, fotos borradas de símbolos riscados em árvores, pessoas desaparecidas, páginas arrancadas.\n Um papel chama sua atenção:\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -236,7 +226,15 @@ inclua biblioteca Util --> u
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Cristofer acha uma caixa com fitas cassete e um gravador velho, ainda funcionando. Insere uma fita.\n Uma voz feminina fala com chiado: — “Dia 12 de abril de 1993. Estamos em campo. Os gritos soam de novo, não humanos. Padrão igual a 1987. A membrana está mais fina. O tempo... está errando.”\n De repente, um grito invertido e distorcido corta a fita. A luz pisca. Todos sentem uma pressão no peito — como se o ar quisesse entrar em vocês.")
+    escreva(" Boletim de Ocorrência - 11/11/1987 Fazenda Moura – Zona rural, limite da Floresta Maldita Desaparecimento coletivo. Família desapareceu na noite do dia 10. Três pares de sapatos alinhados na porta e símbolos queimados no chão da sala. Testemunhas ouviram “cantos” na floresta à madrugada. Caso arquivado por falta de provas.\n")
+    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+
+    escreva("\nTecle Enter para continuar... ")
+    leia(continuar)
+    limpa()
+    
+    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+    escreva(" Cristofer acha uma caixa com fitas cassete e um gravador velho, ainda funcionando. Insere uma fita.\n Uma voz feminina fala com chiado: — “Dia 12 de abril de 1993. Estamos em campo. Os gritos soam de novo, não humanos. Padrão igual a 1987. A membrana está mais fina. O tempo... está errando.”\n De repente, um grito invertido e distorcido corta a fita. A luz pisca. Todos sentem uma pressão no peito — como se o ar quisesse entrar em vocês.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
@@ -244,30 +242,31 @@ inclua biblioteca Util --> u
     faca{
 //terceiro  teste
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”")
+    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
-escreva("Deseja fazer um: Teste de Vontade para resistir à pressão paranormal? (s/n) \n")
+  escreva("Deseja fazer um: Teste de Vontade para resistir à pressão paranormal? (s/n) \n")
+ leia(escolhaDado3)
+  limpa()
 
-
-    escolha(escolhaDado1){
+    escolha(escolhaDado3){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado1)
+        leia(rolarDado3)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado1 = u.sorteia(1,20)
+        valorDado3 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado1,"\n\n")
+        escreva(" Valor obtido: ",valorDado3,"\n\n")
         u.aguarde(1000)
-        se(valorDado1 >= 13)
+        se(valorDado3 >= 13)
         {
           escreva(" Sucesso: Mantém o foco, sem Stress Paranormal.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -282,15 +281,11 @@ escreva("Deseja fazer um: Teste de Vontade para resistir à pressão paranormal?
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva("  Ganha 1 ponto de Stress Paranormal.")
+        escreva("  Ganha 1 ponto de Stress Paranormal.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado1 != "s") e (escolhaDado1 != "n"))
-
-
-
-
+    }enquanto ((escolhaDado3 != "s") e (escolhaDado3 != "n"))
 
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
@@ -307,49 +302,50 @@ escreva("Deseja fazer um: Teste de Vontade para resistir à pressão paranormal?
 
 
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Kaizer mostra um recorte datado de 1984:\n  “Peregrinos das Sombras fazem ritual no interior.” Moradores viram grupo encapuzado entrando na floresta na noite de lua nova, cantando em língua estranha e carregando uma criança. Polícia nunca os localizou.\nCristofer observa a foto.\n — “A gangue nova pode ser fachada. E se são os mesmos de décadas atrás? E se não envelheceram?”")
+    escreva(" Kaizer mostra um recorte datado de 1984:\n  “Peregrinos das Sombras fazem ritual no interior.” Moradores viram grupo encapuzado entrando na floresta na noite de lua nova, cantando em língua estranha e carregando uma criança. Polícia nunca os localizou.\n Cristofer observa a foto.\n — “A gangue nova pode ser fachada. E se são os mesmos de décadas atrás? E se não envelheceram?”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Silêncio. Você monta as peças: desaparecimentos atuais ecoam os antigos. Símbolos, gritos, cultos — tudo aponta para a Floresta Maldita.")
+    escreva(" Silêncio. Você monta as peças: desaparecimentos atuais ecoam os antigos. Símbolos, gritos, cultos — tudo aponta para a Floresta Maldita.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Kaizer espalha os documentos na mesa, conectando com linha vermelha.\n — “Próxima lua nova é em dois dias. Se seguirem o padrão, vão agir de novo. Temos pouco tempo pra descobrir onde e como impedir.”\n Cristofer fecha a caixa das fitas.\n — “Se for entrar na floresta, que seja com os dois pés no chão e olhos abertos.”\n Você guarda os documentos numa pasta. Claudete observa imóvel\n Antes de saírem, ela sussurra: — “Eles não gostam quando mexem nos arquivos...”")
+    escreva(" Kaizer espalha os documentos na mesa, conectando com linha vermelha.\n — “Próxima lua nova é em dois dias. Se seguirem o padrão, vão agir de novo. Temos pouco tempo pra descobrir onde e como impedir.”\n Cristofer fecha a caixa das fitas.\n — “Se for entrar na floresta, que seja com os dois pés no chão e olhos abertos.”\n Você guarda os documentos numa pasta. Claudete observa imóvel\n Antes de saírem, ela sussurra: — “Eles não gostam quando mexem nos arquivos...”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
     faca{
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”")
+    escreva(" Chegam à biblioteca: prédio velho, janelas empoeiradas, cheiro forte de papel molhado. Parece parado no tempo.\n Na recepção, Claudete, senhora de uns 65 anos, óculos grossos, caminha devagar, fala com doçura.\n\n Cristofer (com sua voz alta): — “Bom dia, Claudete!”\n Claudete (sorrindo, surpresa): — “Nossa, fazia tempo que não vejo jovens por aqui.”\n Você (cuidadoso): — “Estamos procurando informações sobre a floresta… e os gritos.” \n Kaiser te puxa de lado e sussurra: — “Não fale isso alto. Ela pode contar pra alguém, ou pior, atrair atenção indesejada.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 escreva("Deseja fazer um: Teste de Investigação para encontrar pistas adicionais? (s/n) \n")
-    
-    escolha(escolhaDado){
+ leia(escolhaDado4)
+    limpa()
+    escolha(escolhaDado4){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado4)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado4 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado4,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 12)
+        se(valorDado4 >= 12)
         {
           escreva(" Sucesso: Descobre mapa antigo indicando clareira usada para rituais.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -364,11 +360,11 @@ escreva("Deseja fazer um: Teste de Investigação para encontrar pistas adiciona
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva("Só informações vagas, o que pode atrasar a missão.")
+        escreva("Só informações vagas, o que pode atrasar a missão.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado4 != "s") e (escolhaDado4 != "n"))
     
 
     escreva("\nTecle Enter para continuar... ")
@@ -383,7 +379,7 @@ escreva("Deseja fazer um: Teste de Investigação para encontrar pistas adiciona
 
 
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" O céu, mesmo sem nuvens, não deixa a lua aparecer. Carpa Grande parece contida sob uma cúpula invisível. O carro para. Diante de vocês, a vegetação negra se abre como uma garganta.\n Kaizer respira fundo e mostra um bilhete. — “Recebi isso ontem à noite. A origem é mascarada, mas o conteúdo... é um enigma.”\n O papel contém:")
+    escreva(" O céu, mesmo sem nuvens, não deixa a lua aparecer. Carpa Grande parece contida sob uma cúpula invisível. O carro para. Diante de vocês, a vegetação negra se abre como uma garganta.\n Kaizer respira fundo e mostra um bilhete. — “Recebi isso ontem à noite. A origem é mascarada, mas o conteúdo... é um enigma.”\n O papel contém:\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
@@ -392,29 +388,30 @@ escreva("Deseja fazer um: Teste de Investigação para encontrar pistas adiciona
                //Quinto teste                  //arrumar charada
       faca{                         
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" CÓDIGO HEX: 53 69 6E 6E 65 72 20 4C 61 73 20 52 6F 63 61 73  \n CLUE 1: Encontrai a letra que caminha sem pés,  \n CLUE 2: A palavra que existe só na ausência de som,  \n CLUE 3: E o número que vive na linha do esquecimento.\n Somai os três.  \n Dividai pelo tempo que não existe.  \n O resultado aponta para o centro.\n (X?, Y?)")
+    escreva(" CÓDIGO HEX: 53 69 6E 6E 65 72 20 4C 61 73 20 52 6F 63 61 73  \n CLUE 1: Encontrai a letra que caminha sem pés,  \n CLUE 2: A palavra que existe só na ausência de som,  \n CLUE 3: E o número que vive na linha do esquecimento.\n Somai os três.  \n Dividai pelo tempo que não existe.  \n O resultado aponta para o centro.\n (X?, Y?)\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
 escreva("Deseja fazer um: Teste de Criptografia? (s/n) \n")
-    
-    escolha(escolhaDado){
+ leia(escolhaDado5)
+    limpa()
+    escolha(escolhaDado5){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado5)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado5 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado5,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 18)
+        se(valorDado5 >= 18)
         {
           escreva(" Sucesso: Você converte o HEX para texto (“Sinner Las Rocas”), e percebe que se refere a uma formação rochosa que aparece nos mapas antigos de Carpa Grande. As três pistas indicam: Espaço (sem pés), Silêncio (sem som), e Zero (linha do esquecimento). A soma é metafórica: lugar onde nada ecoa. -> A coordenada X5 Y13 se confirma.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -429,11 +426,11 @@ escreva("Deseja fazer um: Teste de Criptografia? (s/n) \n")
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Você consegue traduzir o HEX mas interpreta mal as pistas — segue por um caminho errado, aumentando o risco de emboscada.")
+        escreva(" Você consegue traduzir o HEX mas interpreta mal as pistas — segue por um caminho errado, aumentando o risco de emboscada.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado5 != "s") e (escolhaDado5 != "n"))
     
 
     escreva("\nTecle Enter para continuar... ")
@@ -442,7 +439,7 @@ escreva("Deseja fazer um: Teste de Criptografia? (s/n) \n")
     
 
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" A vegetação abre num círculo perfeito. A lua não ilumina aqui, mas ainda assim o chão brilha com um brilho úmido. O altar ao centro pulsa com marcas vivas.\n Kaizer passa luz UV e revela um painel de símbolos ocultos em rochas, dispostos como um mosaico incompleto. Há uma inscrição lateral, entalhada por dentro:")
+    escreva(" A vegetação abre num círculo perfeito. A lua não ilumina aqui, mas ainda assim o chão brilha com um brilho úmido. O altar ao centro pulsa com marcas vivas.\n Kaizer passa luz UV e revela um painel de símbolos ocultos em rochas, dispostos como um mosaico incompleto. Há uma inscrição lateral, entalhada por dentro:\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -450,7 +447,7 @@ escreva("Deseja fazer um: Teste de Criptografia? (s/n) \n")
     limpa()
  
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" “Scripta manent, verba volant. Dentro do que não fala, escuta-se o fim.”")
+    escreva(" “Scripta manent, verba volant. Dentro do que não fala, escuta-se o fim.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -461,19 +458,20 @@ escreva("Deseja fazer um: Teste de Criptografia? (s/n) \n")
     
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Ao lado, outro código, dessa vez em Base64:\n  U2FuY3R1cyByZWRpYml0Lg==  ")
+    escreva(" Ao lado, outro código, dessa vez em Base64:\n  U2FuY3R1cyByZWRpYml0Lg==  \n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
   escreva("Digite a resposta:  \n")
-leia(enigma01)
-se(enigma01=="sanctus redibit"  e  enigma01=="Sanctus redibit" e enigma01=="sanctusredibit" e enigma01=="Sanctusredibit" e enigma01=="SANCTUS REDIBIT" e enigma01=="SANCTUSREDIBIT")
+  leia(enigma01)
+  se(enigma01=="sanctus redibit"  e  enigma01=="Sanctus redibit" e enigma01=="sanctusredibit" e enigma01=="Sanctusredibit" e enigma01=="SANCTUS REDIBIT" e enigma01=="SANCTUSREDIBIT")
 
-  {
+  {limpa()
   escreva("Você decifra: “Sanctus redibit.” A mesma frase do crime inicial. Você percebe que todas as inscrições não são avisos — são ativadores, e que estão espalhadas como um circuito. Ao decifrar os símbolos certos, pode interromper o fluxo ritualístico.")
 }
-senao{
-
-  escreva("A decodificação leva a erro — a inscrição ativa uma leve vibração no altar, alertando os cultistas.")
+senao{limpa()
+escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+  escreva("A decodificação leva a erro — a inscrição ativa uma leve vibração no altar, alertando os Heres.\n")
+escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 }
 
     escreva("\nTecle Enter para continuar... ")
@@ -484,27 +482,29 @@ senao{
                   // arrumar charada
     faca{
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Logo abaixo do altar, você encontra um dispositivo com teclas numéricas e um código:\n  Input: █ █ █ █  \n  int: 3↑ 5↓ 2← 4→  \n  Scriptum: 'A verdade nunca olha em linha reta.'")
+    escreva(" Logo abaixo do altar, você encontra um dispositivo com teclas numéricas e um código:\n  Input: █ █ █ █  \n  int: 3↑ 5↓ 2← 4→  \n  Scriptum: 'A verdade nunca olha em linha reta.'\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
     escreva("Deseja fazer um: Teste de Raciocínio Lógico? (s/n) \n")
-    escolha(escolhaDado){
+     leia(escolhaDado6)
+    limpa()
+    escolha(escolhaDado6){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado6)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado6 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado6,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 16)
+        se(valorDado6 >= 16)
         {
           escreva(" Sucesso: Você deduz que se trata de um código de deslocamento por vetor — uma combinação em cruz (substituição alfabética reversa em 4 direções). A senha correta é “XALE”.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -519,11 +519,11 @@ senao{
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Você erra a sequência, ativando uma runa de alarme — luz vermelha surge no chão. Eles sabem que vocês chegaram.")
+        escreva(" Você erra a sequência, ativando uma runa de alarme — luz vermelha surge no chão. Eles sabem que vocês chegaram.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado6 != "s") e (escolhaDado6 != "n"))
     
 
 
@@ -534,40 +534,41 @@ senao{
 
 
 faca{
-    ("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" O ar se torna sólido. A floresta sussurra como se respirasse. Uma névoa rasteira sobe pelas raízes e revela dezenas de encapuzados. A criança está ali, imóvel.\n Entre eles, Segfredo da Floresta ergue-se: uma figura antinatural, coberta por cascas, galhos e runas em carne viva. Seus olhos negros parecem sugar a luz.\n Kaizer estremece: — “Ele não é um ser. É um algoritmo ancestral. Codificado no medo.”")
+    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+    escreva(" O ar se torna sólido. A floresta sussurra como se respirasse. Uma névoa rasteira sobe pelas raízes e revela dezenas de encapuzados. A criança está ali, imóvel.\n Entre eles, Segfredo da Floresta ergue-se: uma figura antinatural, coberta por cascas, galhos e runas em carne viva. Seus olhos negros parecem sugar a luz.\n Kaizer estremece: — “Ele não é um ser. É um algoritmo ancestral. Codificado no medo.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
   escreva("Deseja fazer um: Teste de Vontade? (s/n) \n")
-
+   leia(escolhaDado7)
+limpa()
     /*adicionar teste aqui <---------------------------------------------------------------------
     Teste de Vontade (CD 17):
       Sucesso: Você resiste ao impacto mental e percebe — o Segfredo é a manifestação da linguagem esquecida. Tudo isso é sobre recriar a linguagem que reprograma a realidade.
       Falha: Sua mente embaralha. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress.
     *///feitoooooooooooooo
-    escolha(escolhaDado){
+    escolha(escolhaDado7){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado7)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado7 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado7,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 17)
-        {
+        se(valorDado7 >= 17)
+        {escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
           escreva(" Sucesso: Você resiste ao impacto mental e percebe — o Segfredo é a manifestação da linguagem esquecida. Tudo isso é sobre recriar a linguagem que reprograma a realidade.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         }
-        senao{
+        senao{escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
           escreva(" Falha: Sua mente embaralha. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         }
@@ -577,11 +578,11 @@ faca{
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Sua mente embaralha. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress..")
+        escreva(" Sua mente embaralha. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress..\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado7 != "s") e (escolhaDado7 != "n"))
     
 
 
@@ -592,41 +593,42 @@ faca{
   //Sexto teste
   faca{
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Cristofer avança como uma flecha, derrubando dois cultistas. Kaizer traça uma runa de dispersão com giz negro. Você prepara uma armadilha com sal e óleo consagrado.")
+    escreva(" Cristofer avança como uma flecha, derrubando dois cultistas. Kaizer traça uma runa de dispersão com giz negro. Você prepara uma armadilha com sal e óleo consagrado.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
 
   escreva("Deseja fazer um: Teste de Destreza? (s/n) \n")
-
+   leia(escolhaDado8)
+limpa()
     /*adicionar teste aqui <---------------------------------------------------------------------
     Teste de Destreza (Você – CD 15):
       Sucesso: A armadilha pega um encapuzado que portava a chave da cela ritual.
       Falha: Você escorrega no sangue, cai próximo ao altar — fica vulnerável por 1 turno.
     *///feitoooooooooooooooo
 
-    escolha(escolhaDado){
+    escolha(escolhaDado8){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado8)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado8 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado8,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 15)
-        {
+        se(valorDado8 >= 15)
+        {escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
           escreva(" Sucesso:A armadilha pega um encapuzado que portava a chave da cela ritual.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         }
-        senao{
+        senao{escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
           escreva(" Falha: Você escorrega no sangue, cai próximo ao altar — fica vulnerável por 1 turno.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         }
@@ -636,11 +638,11 @@ faca{
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Você escorrega no sangue, cai próximo ao altar — fica vulnerável por 1 turno.")
+        escreva(" Você escorrega no sangue, cai próximo ao altar — fica vulnerável por 1 turno.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado8 != "s") e (escolhaDado8 != "n"))
     
 
     escreva("\nTecle Enter para continuar... ")
@@ -648,7 +650,7 @@ faca{
     limpa()
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Kaizer encontra no altar uma tranca antiga com letras giratórias. Ao lado, a inscrição:\n  “Em 1987 fomos escritos. Em 1993 fomos lidos. Agora… nos deletem.”\n E mais abaixo, um QR Code queimado. Kaizer tenta reconstruí-lo com a lente UV. No verso de uma pedra, há uma frase:")
+    escreva(" Kaizer encontra no altar uma tranca antiga com letras giratórias. Ao lado, a inscrição:\n  “Em 1987 fomos escritos. Em 1993 fomos lidos. Agora… nos deletem.”\n E mais abaixo, um QR Code queimado. Kaizer tenta reconstruí-lo com a lente UV. No verso de uma pedra, há uma frase:\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -657,10 +659,12 @@ faca{
 
     faca{
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" MAIOR QUE DEUS, \n PIOR QUE O DIABO, \n OS POBRES O TÊM, \n OS RICOS PRECISAM, \n E SE VOCÊ COMER, VOCÊ MORRE.")
+    escreva(" MAIOR QUE DEUS, \n PIOR QUE O DIABO, \n OS POBRES O TÊM, \n OS RICOS PRECISAM, \n E SE VOCÊ COMER, VOCÊ MORRE.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
   escreva("Deseja fazer um: Teste de Enigma? (s/n) \n")
+   leia(escolhaDado9)
+  limpa()
     //Faca teste aqui <-----------------------
     /*
     Teste de Enigma (CD 18):
@@ -668,24 +672,24 @@ faca{
       Falha: Você hesita, responde errado. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.
 
     */ 
-    escolha(escolhaDado){
+    escolha(escolhaDado9){
       caso 's' : 
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Tecle Enter para rolar o dado...\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        leia(rolarDado)
+        leia(rolarDado9)
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         escreva("Rolando Dado... \n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
         u.aguarde(2000)
         limpa()
-        valorDado = u.sorteia(1,20)
+        valorDado9 = u.sorteia(1,20)
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Valor obtido: ",valorDado,"\n\n")
+        escreva(" Valor obtido: ",valorDado9,"\n\n")
         u.aguarde(1000)
-        se(valorDado >= 18)
+        se(valorDado9 >= 18)
         {
           escreva(" Sucesso: Você responde: 'NADA'. A tranca gira, abrindo um compartimento com um cristal envolvido por ossos. O cristal está pulsando. Se destruído, o código colapsa.\n")
           escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -700,11 +704,11 @@ faca{
       {
         limpa()
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-        escreva(" Você hesita, responde errado. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.")
+        escreva(" Você hesita, responde errado. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.\n")
         escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
       }
     }
-    }enquanto ((escolhaDado != "s") e (escolhaDado != "n"))
+    }enquanto ((escolhaDado9 != "s") e (escolhaDado9 != "n"))
     
 
 
@@ -715,7 +719,7 @@ faca{
     
 
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" Se o cristal for destruído com a runa correta, Segfredo ruge, se dissolve em vapor negro. A criança desperta. Os cultistas desabam, como bonecos sem fios. A floresta inteira parece se soltar do chão — raízes regridem. A lua aparece pela primeira vez.\n Se falharem, o ritual se completa — Segfredo desaparece com a criança em um portal de árvores vivas. Claudete aparece nos arredores, observando, sussurrando:\n — “O próximo passo... já foi dado.”")
+    escreva(" Se o cristal for destruído com a runa correta, Segfredo ruge, se dissolve em vapor negro. A criança desperta. Os cultistas desabam, como bonecos sem fios. A floresta inteira parece se soltar do chão — raízes regridem. A lua aparece pela primeira vez.\n Se falharem, o ritual se completa — Segfredo desaparece com a criança em um portal de árvores vivas. Claudete aparece nos arredores, observando, sussurrando:\n — “O próximo passo... já foi dado.”\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
 
     escreva("\nTecle Enter para continuar... ")
@@ -724,12 +728,81 @@ faca{
 
     
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-    escreva(" De volta à SILK, tudo é arquivado. VV analisa os dados. O sistema revela um novo código criptografado:\n  Protocolo Sigma-9 | Projeto Palimpsesto Ativo  \n  Localização: SÃO MIGUEL DAS DUNAS  \n  Status: Culto em Expansão  \n  Prioridade: NÍVEL 6 – INTERVENÇÃO IMEDIATA\n  Kaizer sussurra, encarando a tela: — “A floresta pode queimar… mas o código dela sempre encontra outra página.”\n\nFim do ciclo. Ou começo do próximo.")
+    escreva(" De volta à SILK, tudo é arquivado. VV analisa os dados. O sistema revela um novo código criptografado:\n  Protocolo Sigma-9 | Projeto Palimpsesto Ativo  \n  Localização: SÃO MIGUEL DAS DUNAS  \n  Status: Culto em Expansão  \n  Prioridade: NÍVEL 6 – INTERVENÇÃO IMEDIATA\n  Kaizer sussurra, encarando a tela: — “A floresta pode queimar… mas o código dela sempre encontra outra página.”\n\nFim do ciclo. Ou começo do próximo.\n")
     escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
-
     escreva("\nTecle Enter para continuar... ")
     leia(continuar)
     limpa()
+    escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+escreva("deseja finalizar? (s/n)")
+escreva("----------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+leia(fim)
+se(fim == 's'){
+  limpa()
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+}
 
+senao{
+  limpa()
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+u.aguarde(1500)
+  escreva("O CICLO NUNCA ACABA!\n")
+
+  }
+}
+enquanto (fim != 's')
+  
+  }
   }
 }
