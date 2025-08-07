@@ -1,25 +1,130 @@
-<!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ecos de Carpagrande 🎃</title>
-    <link rel="stylesheet" href="INDEX.css">
-    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="risco"></div>
-    <div class="fish"></div>
+/* INDEX.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <div class="home">
-      <h1>A JORNADA<br>A CARPA GRANDE</h1>
-      
-      <div class="button-container">
-        <a href="https://chat.deepseek.com/a/chat/s/932d2584-3ff0-45f2-939e-c5200cf7ff35">
-          <button class="start-button">INICIAR</button>
-        </a>
-      </div>
-  
-      <h3>Ativar tela cheia</h3>
-    </div>
-  </body>
-</html>
+body {
+  background-color: #0a0a0a;
+  background-image:
+  url('imagens/fundo.png'),
+  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-position: center center;
+  font-family: 'Old Standard TT', serif;
+  color: #e0d3c0;
+  position: relative;
+  overflow: hidden;
+}
+
+.home {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 4.5rem;
+  line-height: 1.3;
+  color: #c9a66b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.home h3 {
+  color: #8b8b8b;
+  font-size: 1rem;
+  margin-top: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.button-container {
+  margin: 3rem 0;
+  position: relative;
+}
+
+.start-button {
+  background: transparent;
+  color: #c9a66b;
+  border: 2px solid #c9a66b;
+  padding: 1rem 3rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Old Standard TT', serif;
+  box-shadow: 0 0 15px rgba(201, 166, 107, 0.3);
+}
+
+.start-button:hover {
+  background: rgba(201, 166, 107, 0.1);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(201, 166, 107, 0.5);
+}
+
+.start-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.start-button:hover::before {
+  left: 100%;
+}
+
+.fish {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><path d="M200,100 C250,0 300,50 300,100 C300,150 250,200 200,100 Z" fill="%23c9a66b" opacity="0.3"/><circle cx="230" cy="90" r="8" fill="%23fff" opacity="0.7"/><path d="M150,90 C170,80 180,90 190,100 C180,110 170,120 150,110 Z" fill="%23c9a66b" opacity="0.5"/></svg>');
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0.2;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -20px);
+  }
+}
+
+.risco {
+  position: absolute;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a66b, transparent);
+  top: 50%;
+  left: 20%;
+  z-index: 1;
+  opacity: 0.3;
+}
