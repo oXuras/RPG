@@ -1,25 +1,284 @@
 <!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ecos de Carpagrande 🎃</title>
-    <link rel="stylesheet" href="INDEX.css">
-    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="risco"></div>
-    <div class="fish"></div>
-
-    <div class="home">
-      <h1>A JORNADA<br>A CARPA GRANDE</h1>
-      
-      <div class="button-container">
-        <a href="https://chat.deepseek.com/a/chat/s/932d2584-3ff0-45f2-939e-c5200cf7ff35">
-          <button class="start-button">INICIAR</button>
-        </a>
-      </div>
-  
-      <h3>Ativar tela cheia</h3>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floresta Ancestral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=MedievalSharp&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0f0d;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 20, 10, 0.5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 15, 0.5) 0%, transparent 30%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: #9fc2ac;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .scene {
+            background: rgba(10, 20, 15, 0.7);
+            border: 1px solid #1e3328;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 20, 10, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scene::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3328, #3a5e48, #1e3328);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        .dialogue {
+            font-style: italic;
+            color: #c9d7c7;
+            border-left: 3px solid #3a5e48;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 5px rgba(161, 219, 177, 0.3);
+        }
+        
+        .dice-test {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #7fa98a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .dice {
+            font-size: 4rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.5s;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.7);
+        }
+        
+        .dice:hover {
+            transform: rotate(180deg) scale(1.2);
+        }
+        
+        .result {
+            min-height: 150px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(15, 25, 20, 0.8);
+            border: 1px solid #2a4738;
+            display: none;
+        }
+        
+        .success {
+            color: #9fc2ac;
+            border-color: #3a5e48;
+        }
+        
+        .failure {
+            color: #c97a6d;
+            border-color: #5e3a3a;
+        }
+        
+        .reveal-button {
+            background: linear-gradient(to bottom, #3a5e48, #2a4738);
+            color: #d8e0de;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(58, 94, 72, 0.5);
+        }
+        
+        .reveal-button:hover {
+            background: linear-gradient(to bottom, #4a6e58, #3a5748);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(58, 94, 72, 0.7);
+        }
+        
+        .reveal-button:active {
+            transform: translateY(1px);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(111, 187, 138, 0.9); }
+            100% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+        }
+        
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #5a7165;
+            border-top: 1px solid rgba(100, 120, 100, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="fog"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="pulse">Floresta Ancestral</h1>
+        </header>
+        
+        <div class="scene">
+            <p>O ar se torna sólido. A floresta sussurra como se respirasse. Uma névoa rasteira sobe pelas raízes e revela bolsas de encapuzados. A criança está ali, imóvel.</p>
+            
+            <p>Entre eles, Segfredo da Floresta ergue-se: uma figura antinatural, coberta por cascas, galhos e runas em carne viva. Seus olhos negros parecem açúcar à luz.</p>
+            
+            <div class="dialogue">
+                Kaizer estremece: — "Ele não é um ser. É um algoritmo ancestral. Codificado no medo."
+            </div>
+        </div>
+        
+        <div class="dice-test">
+            <h2>🎲 Teste de Vontade (CD 17)</h2>
+            
+            <div class="dice floating" onclick="rollDice()">⚄</div>
+            
+            <p>Clique no dado para testar sua vontade</p>
+            
+            <div id="result" class="result"></div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="reveal-button" onclick="revealSecret()">Revelar Segredo Ancestral</button>
+        </div>
     </div>
-  </body>
+    
+    <footer>
+        <p>Desafio da Floresta Ancestral • Sistema de RPG</p>
+    </footer>
+
+    <script>
+        function rollDice() {
+            const diceElement = document.querySelector('.dice');
+            const resultElement = document.getElementById('result');
+            
+            // Animação do dado
+            diceElement.style.transform = 'rotate(360deg) scale(1.5)';
+            diceElement.style.transition = 'transform 1s';
+            
+            // Rolar o dado (1-20)
+            setTimeout(() => {
+                const roll = Math.floor(Math.random() * 20) + 1;
+                
+                // Mostrar resultado
+                resultElement.style.display = 'block';
+                
+                if (roll >= 17) {
+                    resultElement.innerHTML = `
+                        <h3 class="success">Sucesso (${roll})!</h3>
+                        <p>Você resiste ao impacto mental e percebe — o Segfredo é uma manifestação da linguagem esquecida. Tudo isso é sobre recriar a linguagem que reprograma a realidade.</p>
+                    `;
+                    resultElement.className = 'result success';
+                } else {
+                    resultElement.innerHTML = `
+                        <h3 class="failure">Falha (${roll})!</h3>
+                        <p>Sua mente embaralhada. Visões de outros mundos, distorções de tempo e corpos fundidos com raízes invadem sua visão. Ganha 1 ponto de Stress.</p>
+                    `;
+                    resultElement.className = 'result failure';
+                }
+                
+                // Resetar animação do dado
+                setTimeout(() => {
+                    diceElement.style.transform = 'rotate(0deg) scale(1)';
+                    diceElement.style.transition = 'transform 0.5s';
+                }, 1000);
+                
+            }, 1000);
+        }
+        
+        function revealSecret() {
+            alert("Segfredo não é apenas um guardião da floresta. Ele é a encarnação do primeiro código de realidade, escrito quando o mundo ainda era jovem. Suas runas em carne viva são comandos primordiais que podem reescrever a própria existência.");
+        }
+    </script>
+</body>
 </html>

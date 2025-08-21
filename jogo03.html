@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desfecho da Floresta Ancestral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=MedievalSharp&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0f0d;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 20, 10, 0.5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 15, 0.5) 0%, transparent 30%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: #9fc2ac;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .outcome-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .outcome {
+            background: rgba(10, 20, 15, 0.7);
+            border: 1px solid #1e3328;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 20, 10, 0.5);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .outcome::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .success::before {
+            background: linear-gradient(90deg, #1e3328, #3a5e48, #1e3328);
+        }
+        
+        .failure::before {
+            background: linear-gradient(90deg, #1e3328, #5e3a3a, #1e3328);
+        }
+        
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #7fa98a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .success h2 {
+            color: #9fc2ac;
+        }
+        
+        .failure h2 {
+            color: #c97a6d;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        .dialogue {
+            font-style: italic;
+            color: #c9d7c7;
+            border-left: 3px solid #3a5e48;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 5px rgba(161, 219, 177, 0.3);
+        }
+        
+        .failure .dialogue {
+            border-left: 3px solid #5e3a3a;
+            color: #d7c7c7;
+        }
+        
+        .scene {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .crystal {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #1e3328, #0a0f0d, #1e3328);
+            border: 2px solid #3a5e48;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(111, 187, 138, 0.3);
+        }
+        
+        .crystal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(111, 187, 138, 0.5), transparent 60%);
+            animation: pulse 3s infinite;
+        }
+        
+        .portal {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #1e3328, #0a0f0d, #1e3328);
+            border: 2px solid #5e3a3a;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(187, 111, 111, 0.3);
+        }
+        
+        .portal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(187, 111, 111, 0.5), transparent 70%);
+            animation: swirl 5s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes swirl {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #5a7165;
+            border-top: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        .toggle-button {
+            background: linear-gradient(to bottom, #3a5e48, #2a4738);
+            color: #d8e0de;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(58, 94, 72, 0.5);
+        }
+        
+        .toggle-button:hover {
+            background: linear-gradient(to bottom, #4a6e58, #3a5748);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(58, 94, 72, 0.7);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="fog"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="floating">Desfecho da Floresta Ancestral</h1>
+        </header>
+        
+        <div class="button-container">
+            <button class="toggle-button" onclick="showOutcome('success')">Final Bem-Sucedido</button>
+            <button class="toggle-button" onclick="showOutcome('failure')">Final Alternativo</button>
+        </div>
+        
+        <div id="success-outcome" class="outcome success">
+            <h2>✨ O Cristal é Destruído ✨</h2>
+            
+            <div class="scene">
+                <div class="crystal"></div>
+                <p>Cristal Ancestral pulsante</p>
+            </div>
+            
+            <p>Com a runa correta invocada, o cristal é atingido por um raio de energia pura. Ele emite um som agudo, como vidro se estilhaçando em câmera lenta, antes de explodir em mil fragmentos de luz que se dissipam no ar.</p>
+            
+            <p>Segfredo solta um rugido que parece vir das profundezas da terra, um som de raiva e agonia primordial. Sua forma arbórea começa a tremer violentamente, as cascas e galhos que compõem seu corpo se desfazendo em um vapor negro e espesso que cheira a terra molhada e folhas podres.</p>
+            
+            <p>Enquanto o vapor se dissipa, a criança no altar abre os olhos lentamente, confusa mas ilesa. Ao mesmo tempo, os cultistas ao redor desabam como bonecos sem fios, seus corpos perdendo a forma até se tornarem pouco mais que montes de roupas e cinzas.</p>
+            
+            <div class="dialogue">
+                "Está feito... o algoritmo está desfeito..."
+            </div>
+            
+            <p>A floresta inteira parece suspirar aliviada. As raízes que cobriam o chão começam a regredir, recuando para as árvores de origem. A luz do luar, que não era visível antes, agora banha a clareira com sua luz prateada. Pela primeira vez, a lua aparece no céu, iluminando o caminho de volta.</p>
+        </div>
+        
+        <div id="failure-outcome" class="outcome failure hidden">
+            <h2>🌀 O Ritual se Completa 🌀</h2>
+            
+            <div class="scene">
+                <div class="portal"></div>
+                <p>Portal de Árvores Viventes</p>
+            </div>
+            
+            <p>Antes que possam agir, o ritual atinge seu clímax. Segfredo estende seus galhos em direção à criança, envolvendo-a em um emaranhado de raízes e luzes dançantes. O ar fica pesado e estático, como antes de uma tempestade.</p>
+            
+            <p>Um portal de energia pura e madeira viva se abre no centro do altar - um vórtice de cores impossíveis e padrões geométricos que desafiam a compreensão. Segfredo avança em direção ao portal, carregando a criança consigo. No último momento, ele se volta e seus olhos de açúcar queimado fixam-se no grupo, como se registrasse cada rosto em sua memória ancestral.</p>
+            
+            <div class="dialogue">
+                "O ciclo continua... em outra forma, em outro tempo..."
+            </div>
+            
+            <p>Então, ele desaparece no portal, que se fecha com um estalo sonoro que ecoa pela floresta. Um silêncio pesado cai sobre o local, perturbado apenas pelo farfalhar das folhas.</p>
+            
+            <p>Nos arredores da clareira, uma figura familiar aparece entre as árvores. Claudete observa a cena, seus olhos refletindo a luz residual do portal fechado. Um sorriso quase imperceptível curva seus lábios enquanto ela sussurra para si mesma:</p>
+            
+            <div class="dialogue">
+                "O próximo passo... já foi dado."
+            </div>
+            
+            <p>Antes que possam abordá-la, ela desaparece entre as sombras das árvores, deixando para trás apenas a floresta silenciosa e a sensação de que algo muito maior está em movimento.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Desafio da Floresta Ancestral • Sistema de RPG</p>
+    </footer>
+
+    <script>
+        function showOutcome(outcome) {
+            // Esconder todos os outcomes
+            document.getElementById('success-outcome').classList.add('hidden');
+            document.getElementById('failure-outcome').classList.add('hidden');
+            
+            // Mostrar o outcome selecionado
+            document.getElementById(outcome + '-outcome').classList.remove('hidden');
+        }
+        
+        // Mostrar o outcome bem-sucedido por padrão
+        showOutcome('success');
+    </script>
+</body>
+</html>

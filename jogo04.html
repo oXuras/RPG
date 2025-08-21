@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuação: O Próximo Passo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=MedievalSharp&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0f0d;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 20, 10, 0.5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 15, 0.5) 0%, transparent 30%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: #9fc2ac;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .outcome {
+            background: rgba(10, 20, 15, 0.7);
+            border: 1px solid #1e3328;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 20, 10, 0.5);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto 2rem;
+        }
+        
+        .outcome::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            border-radius: 10px 10px 0 0;
+            background: linear-gradient(90deg, #1e3328, #5e3a3a, #1e3328);
+        }
+        
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #c97a6d;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #7fa98a;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #3a5e48;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        .dialogue {
+            font-style: italic;
+            color: #d7c7c7;
+            border-left: 3px solid #5e3a3a;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 5px rgba(219, 161, 161, 0.3);
+        }
+        
+        .scene {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .portal {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #1e3328, #0a0f0d, #1e3328);
+            border: 2px solid #5e3a3a;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(187, 111, 111, 0.3);
+        }
+        
+        .portal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(187, 111, 111, 0.5), transparent 70%);
+            animation: swirl 5s infinite linear;
+        }
+        
+        .claudete {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #1e3328, #0a0f0d, #1e3328);
+            border: 2px solid #5e3a3a;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(187, 111, 111, 0.3);
+        }
+        
+        .claudete::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(187, 111, 111, 0.5), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(111, 187, 138, 0.3), transparent 60%);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes swirl {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #5a7165;
+            border-top: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        .next-steps {
+            background: rgba(15, 25, 20, 0.9);
+            border: 1px solid #5e3a3a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .next-steps h3 {
+            color: #c97a6d;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        li:before {
+            content: "•";
+            color: #5e3a3a;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+        
+        .consequence {
+            background: rgba(20, 15, 15, 0.7);
+            border-left: 4px solid #5e3a3a;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .flashback {
+            background: rgba(25, 20, 15, 0.8);
+            border: 1px solid #5e4a3a;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+        
+        .symbol {
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="fog"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="floating">Continuação: O Próximo Passo</h1>
+        </header>
+        
+        <div class="outcome">
+            <h2>🌀 O Ritual se Completa 🌀</h2>
+            
+            <div class="scene">
+                <div class="portal"></div>
+                <p>Portal de Árvores Viventes</p>
+            </div>
+            
+            <p>Antes que possam agir, o ritual atinge seu clímax. Segfredo estende seus galhos em direção à criança, envolvendo-a em um emaranhado de raízes e luzes dançantes. O ar fica pesado e estático, como antes de uma tempestade.</p>
+            
+            <p>Um portal de energia pura e madeira viva se abre no centro do altar - um vórtice de cores impossíveis e padrões geométricos que desafiam a compreensão. Segfredo avança em direção ao portal, carregando a criança consigo. No último momento, ele se volta e seus olhos de açúcar queimado fixam-se no grupo, como se registrasse cada rosto em sua memória ancestral.</p>
+            
+            <div class="dialogue">
+                "O ciclo continua... em outra forma, em outro tempo..."
+            </div>
+            
+            <p>Então, ele desaparece no portal, que se fecha com um estalo sonoro que ecoa pela floresta. Um silêncio pesado cai sobre o local, perturbado apenas pelo farfalhar das folhas.</p>
+            
+            <div class="scene">
+                <div class="claudete"></div>
+                <p>Claudete observa nos arredores</p>
+            </div>
+            
+            <p>Nos arredores da clareira, uma figura familiar aparece entre as árvores. Claudete observa a cena, seus olhos refletindo a luz residual do portal fechado. Um sorriso quase imperceptível curva seus lábios enquanto ela sussurra para si mesma:</p>
+            
+            <div class="dialogue">
+                "O próximo passo... já foi dado."
+            </div>
+            
+            <p>Antes que possam abordá-la, ela desaparece entre as sombras das árvores, deixando para trás apenas a floresta silenciosa e a sensação de que algo muito maior está em movimento.</p>
+            
+            <h3>Consequências Imediatas</h3>
+            
+            <div class="consequence">
+                <p>À medida que o grupo se recompõe, percebem mudanças sutis mas significativas ao seu redor:</p>
+            </div>
+            
+            <ul>
+                <li>As árvores ao redor parecem agora <strong>observar</strong> o grupo, com padrões que lembram rostos surgindo nas cascas</li>
+                <li>O ar está mais frio, e um vento suave carrega <strong>sussurros indistintos</strong> que parecem vir de todas as direções</li>
+                <li>Os corpos dos cultistas <strong>desfazem-se em serapilheira e musgo</strong>, como se nunca tivessem sido humanos</li>
+                <li>Uma <strong>neblina espessa</strong> começa a se formar, dificultando a visão além de alguns metros</li>
+            </ul>
+            
+            <h3>O Despertar de Novas Realidades</h3>
+            
+            <div class="flashback">
+                <p>Kaizer sente uma enxaqueca súbita, e em sua mente surgem visões de um mundo onde a floresta nunca existiu, substituída por uma cidade de metal e luzes onde as pessoas são conectadas a máquinas, seguindo rotinas pré-determinadas como se fossem... algoritmos.</p>
+            </div>
+            
+            <p>Christofer percebe que suas cicatrizes mais antigas agora brilham com um leve tom âmbar, e ele pode sentir a dor das árvores ao redor como se fosse sua própria.</p>
+            
+            <div class="dialogue">
+                "Ele não foi destruído... apenas transplantado. E levou a criança como semente para um novo mundo."
+            </div>
+            
+            <h3>O Próximo Passo</h3>
+            
+            <div class="next-steps">
+                <p>O grupo agora se vê diante de um novo desafio: descobrir para onde Segfredo levou a criança e qual é o "próximo passo" ao qual Claudete se referia.</p>
+                
+                <ul>
+                    <li><strong>Rastros do Portal</strong>: Vestígios de energia residual podem ser rastreados até sua próxima manifestação</li>
+                    <li><strong>Os Cadernos de Claudete</strong>: Seu esconderijo na cidade pode conter pistas sobre seus verdadeiros motivos</li>
+                    <li><strong>O Alcance do Algoritmo</strong>: A influência de Segfredo pode estar se espalhando para além da floresta</li>
+                    <li><strong>Sonhos Proféticos</strong>: Os membros do grupo podem começar a ter visões do mundo que Segfredo pretende criar</li>
+                </ul>
+                
+                <div class="dialogue">
+                    "Ele não quer destruir o mundo... quer reprogramá-lo. E a criança é a chave."
+                </div>
+            </div>
+            
+            <p>Enquanto a neblina se fecha ao redor deles, o grupo percebe que sua missão está longe de terminar. Eles não falharam completamente - mas agora o jogo mudou, e as regras são muito mais complexas do que imaginavam.</p>
+            
+            <div class="dialogue">
+                "O algoritmo foi reiniciado... mas em qual sistema?"
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Desafio da Floresta Ancestral • Sistema de RPG • Continuação: O Próximo Passo</p>
+    </footer>
+</body>
+</html>

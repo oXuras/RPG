@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confronto na Floresta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=MedievalSharp&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0f0d;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 20, 10, 0.5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 15, 0.5) 0%, transparent 30%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: #9fc2ac;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .scene {
+            background: rgba(10, 20, 15, 0.7);
+            border: 1px solid #1e3328;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 20, 10, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scene::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3328, #3a5e48, #1e3328);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        .action-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .action-card {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(58, 94, 72, 0.6);
+        }
+        
+        .character-name {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #7fa98a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #3a5e48;
+            padding-bottom: 0.5rem;
+        }
+        
+        .dice-test {
+            margin: 1.5rem 0;
+        }
+        
+        .dice {
+            font-size: 3.5rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.5s;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.7);
+        }
+        
+        .dice:hover {
+            transform: rotate(180deg) scale(1.2);
+        }
+        
+        .cd {
+            font-weight: bold;
+            color: #9fc2ac;
+            margin: 10px 0;
+        }
+        
+        .result {
+            min-height: 150px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(15, 25, 20, 0.8);
+            border: 1px solid #2a4738;
+            display: none;
+            text-align: left;
+        }
+        
+        .success {
+            color: #9fc2ac;
+            border-color: #3a5e48;
+        }
+        
+        .failure {
+            color: #c97a6d;
+            border-color: #5e3a3a;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(111, 187, 138, 0.9); }
+            100% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+        }
+        
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #5a7165;
+            border-top: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        .roll-button {
+            background: linear-gradient(to bottom, #3a5e48, #2a4738);
+            color: #d8e0de;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(58, 94, 72, 0.5);
+        }
+        
+        .roll-button:hover {
+            background: linear-gradient(to bottom, #4a6e58, #3a5748);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(58, 94, 72, 0.7);
+        }
+        
+        .roll-button:active {
+            transform: translateY(1px);
+        }
+        
+        .action-description {
+            font-style: italic;
+            color: #c9d7c7;
+            margin: 10px 0;
+            min-height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fog"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="pulse">Confronto na Floresta</h1>
+        </header>
+        
+        <div class="scene">
+            <p>Cristofer avança como uma flecha, derrubando dois cultistas. Kaizer traçou uma runa de dispersão com giz negro. Você prepara uma armadilha com sal e óleo consagrado.</p>
+        </div>
+        
+        <div class="action-container">
+            <!-- Carta do Cristofer -->
+            <div class="action-card">
+                <div class="character-name">Cristofer</div>
+                <div class="action-description">
+                    Avança como uma flecha, derrubando dois cultistas com movimentos precisos e rápidos.
+                </div>
+                <div class="dice-test">
+                    <div class="cd">🎲 Teste de Força (CD 14)</div>
+                    <div class="dice floating" onclick="rollDice(14, 'cristofer')">⚄</div>
+                    <p>Clique no dado para testar</p>
+                </div>
+                <div id="result-cristofer" class="result"></div>
+            </div>
+            
+            <!-- Carta do Kaizer -->
+            <div class="action-card">
+                <div class="character-name">Kaizer</div>
+                <div class="action-description">
+                    Traça uma runa de dispersão com giz negro, canalizando energia arcana para afastar os cultistas.
+                </div>
+                <div class="dice-test">
+                    <div class="cd">🎲 Teste de Ocultismo (CD 16)</div>
+                    <div class="dice floating" onclick="rollDice(16, 'kaizer')">⚄</div>
+                    <p>Clique no dado para testar</p>
+                </div>
+                <div id="result-kaizer" class="result"></div>
+            </div>
+            
+            <!-- Carta do Jogador -->
+            <div class="action-card">
+                <div class="character-name">Você</div>
+                <div class="action-description">
+                    Prepara uma armadilha com sal e óleo consagrado, esperando capturar um dos cultistas.
+                </div>
+                <div class="dice-test">
+                    <div class="cd">🎲 Teste de Destreza (CD 15)</div>
+                    <div class="dice floating" onclick="rollDice(15, 'player')">⚄</div>
+                    <p>Clique no dado para testar</p>
+                </div>
+                <div id="result-player" class="result"></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="roll-button" onclick="rollAllDice()">Rolar Todos os Dados</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Desafio da Floresta Ancestral • Sistema de RPG</p>
+    </footer>
+
+    <script>
+        function rollDice(cd, character) {
+            const diceElement = document.querySelector(`.action-card:nth-child(${getCardIndex(character)}) .dice`);
+            const resultElement = document.getElementById(`result-${character}`);
+            
+            // Animação do dado
+            diceElement.style.transform = 'rotate(360deg) scale(1.5)';
+            diceElement.style.transition = 'transform 1s';
+            
+            // Rolar o dado (1-20)
+            setTimeout(() => {
+                const roll = Math.floor(Math.random() * 20) + 1;
+                
+                // Mostrar resultado
+                resultElement.style.display = 'block';
+                
+                if (roll >= cd) {
+                    resultElement.innerHTML = `
+                        <h3 class="success">Sucesso (${roll})!</h3>
+                        <p>${getSuccessText(character)}</p>
+                    `;
+                    resultElement.className = 'result success';
+                } else {
+                    resultElement.innerHTML = `
+                        <h3 class="failure">Falha (${roll})!</h3>
+                        <p>${getFailureText(character)}</p>
+                    `;
+                    resultElement.className = 'result failure';
+                }
+                
+                // Resetar animação do dado
+                setTimeout(() => {
+                    diceElement.style.transform = 'rotate(0deg) scale(1)';
+                    diceElement.style.transition = 'transform 0.5s';
+                }, 1000);
+                
+            }, 1000);
+        }
+        
+        function getCardIndex(character) {
+            switch(character) {
+                case 'cristofer': return 1;
+                case 'kaizer': return 2;
+                case 'player': return 3;
+            }
+        }
+        
+        function getSuccessText(character) {
+            switch(character) {
+                case 'cristofer':
+                    return "Nocauteia dois cultistas antes que gritem.";
+                case 'kaizer':
+                    return "A runa brilha e afasta metade dos encapuzados, revelando a base do altar.";
+                case 'player':
+                    return "A armadilha pega um encapuzado que portava a chave da cela ritual.";
+            }
+        }
+        
+        function getFailureText(character) {
+            switch(character) {
+                case 'cristofer':
+                    return "Um deles crava um punhal ritual no ombro de Cristofer — 3 de dano.";
+                case 'kaizer':
+                    return "Uma runa reverbera mal. Um raio escuro atinge Kaizer. Ele perde a fala temporariamente.";
+                case 'player':
+                    return "Você escorregou no sangue, cai próximo ao altar — fica vulnerável por 1 turno.";
+            }
+        }
+        
+        function rollAllDice() {
+            rollDice(14, 'cristofer');
+            setTimeout(() => rollDice(16, 'kaizer'), 500);
+            setTimeout(() => rollDice(15, 'player'), 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma do Altar Ancestral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=MedievalSharp&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0f0d;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 20, 10, 0.5) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 15, 0.5) 0%, transparent 30%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: #9fc2ac;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .scene {
+            background: rgba(10, 20, 15, 0.7);
+            border: 1px solid #1e3328;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 20, 10, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scene::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3328, #3a5e48, #1e3328);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        
+        .altar-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .inscription {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .inscription-text {
+            font-style: italic;
+            color: #c9d7c7;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .riddle {
+            background: rgba(15, 25, 20, 0.9);
+            border: 1px solid #3a5e48;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .riddle-text {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #9fc2ac;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            text-shadow: 0 0 5px rgba(111, 187, 138, 0.5);
+            margin-bottom: 1.5rem;
+        }
+        
+        .qr-code {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-img {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #1e3328, #0a0f0d, #1e3328);
+            border: 2px solid #3a5e48;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-img::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 40%, rgba(111, 187, 138, 0.2) 50%, transparent 60%),
+                linear-gradient(transparent 40%, rgba(111, 187, 138, 0.2) 50%, transparent 60%);
+            background-size: 10px 10px;
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 200px; }
+        }
+        
+        .burn-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, transparent 20%, rgba(0, 0, 0, 0.8) 40%);
+            pointer-events: none;
+        }
+        
+        .dice-test {
+            background: rgba(20, 30, 25, 0.8);
+            border: 1px solid #2a4738;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+        
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #7fa98a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .dice {
+            font-size: 4rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.5s;
+            text-shadow: 0 0 10px rgba(111, 187, 138, 0.7);
+        }
+        
+        .dice:hover {
+            transform: rotate(180deg) scale(1.2);
+        }
+        
+        .result {
+            min-height: 150px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(15, 25, 20, 0.8);
+            border: 1px solid #2a4738;
+            display: none;
+        }
+        
+        .success {
+            color: #9fc2ac;
+            border-color: #3a5e48;
+        }
+        
+        .failure {
+            color: #c97a6d;
+            border-color: #5e3a3a;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(111, 187, 138, 0.9); }
+            100% { text-shadow: 0 0 5px rgba(111, 187, 138, 0.5); }
+        }
+        
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 15, 13, 0.9) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #5a7165;
+            border-top: 1px solid rgba(100, 120, 100, 0.3);
+        }
+        
+        .answer-input {
+            background: rgba(15, 25, 20, 0.8);
+            border: 1px solid #3a5e48;
+            border-radius: 5px;
+            padding: 0.8rem 1rem;
+            color: #d8e0de;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.2rem;
+            width: 200px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .submit-button {
+            background: linear-gradient(to bottom, #3a5e48, #2a4738);
+            color: #d8e0de;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(58, 94, 72, 0.5);
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(to bottom, #4a6e58, #3a5748);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(58, 94, 72, 0.7);
+        }
+        
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+        
+        .uv-light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 30px;
+            background: rgba(94, 53, 177, 0.3);
+            border-radius: 50%;
+            filter: blur(15px);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .qr-code:hover .uv-light {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="fog"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="pulse">Enigma do Altar Ancestral</h1>
+        </header>
+        
+        <div class="scene">
+            <p>Kaizer encontra no altar uma tranca antiga com letras giratórias. Ao lado, a inscrição:</p>
+            
+            <div class="inscription">
+                <div class="inscription-text">
+                    "Em 1987 fomos escritos. Em 1993 fomos lidos. Agora… nos deletem."
+                </div>
+                
+                <p>E mais abaixo, um QR Code queimado. Kaizer tenta reconstruí-lo com lente UV. No verso de uma pedra, há uma frase:</p>
+                
+                <div class="riddle">
+                    <div class="riddle-text">
+                        MAIOR QUE DEUS,<br>
+                        PIOR QUE O DIABO,<br>
+                        OS POBRES O TÊM,<br>
+                        OS RICOS PRECISAM,<br>
+                        E SE VOCÊ COMER, VOCÊ MORRE.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="altar-content">
+                <div class="qr-code">
+                    <div class="qr-img">
+                        <div class="burn-effect"></div>
+                        <div class="uv-light"></div>
+                    </div>
+                    <p>QR Code danificado - Reconstruindo com luz UV</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dice-test">
+            <h2>🎲 Teste de Enigma (CD 18)</h2>
+            
+            <p>Qual é a resposta para o enigma?</p>
+            <input type="text" class="answer-input" id="answer" placeholder="Sua resposta">
+            
+            <div class="dice floating" onclick="checkRiddle()">⚄</div>
+            
+            <p>Clique no dado após inserir sua resposta</p>
+            
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Desafio da Floresta Ancestral • Sistema de RPG</p>
+    </footer>
+
+    <script>
+        function checkRiddle() {
+            const answer = document.getElementById('answer').value.trim().toUpperCase();
+            const resultElement = document.getElementById('result');
+            const diceElement = document.querySelector('.dice');
+            
+            // Animação do dado
+            diceElement.style.transform = 'rotate(360deg) scale(1.5)';
+            diceElement.style.transition = 'transform 1s';
+            
+            // Rolar o dado (1-20)
+            setTimeout(() => {
+                const roll = Math.floor(Math.random() * 20) + 1;
+                
+                // Verificar se a resposta está correta
+                const correctAnswer = answer === 'NADA';
+                
+                // Mostrar resultado
+                resultElement.style.display = 'block';
+                
+                if (correctAnswer && roll >= 18) {
+                    resultElement.innerHTML = `
+                        <h3 class="success">Sucesso (${roll})!</h3>
+                        <p>Você responde: "NADA". A tranca gira, abrindo um compartimento com um cristal envolvido por ossos. O cristal está pulsando. Se destruído, o código colapsa.</p>
+                    `;
+                    resultElement.className = 'result success';
+                } else if (correctAnswer) {
+                    resultElement.innerHTML = `
+                        <h3 class="failure">Falha (${roll})!</h3>
+                        <p>Você sabe a resposta, mas hesita ao respondê-la. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.</p>
+                    `;
+                    resultElement.className = 'result failure';
+                } else {
+                    resultElement.innerHTML = `
+                        <h3 class="failure">Falha (${roll})!</h3>
+                        <p>Você hesita, responde errado. A cela se fecha. A floresta começa a colapsar, forçando uma fuga em tempo limitado.</p>
+                    `;
+                    resultElement.className = 'result failure';
+                }
+                
+                // Resetar animação do dado
+                setTimeout(() => {
+                    diceElement.style.transform = 'rotate(0deg) scale(1)';
+                    diceElement.style.transition = 'transform 0.5s';
+                }, 1000);
+                
+            }, 1000);
+        }
+        
+        // Permitir enviar resposta com Enter
+        document.getElementById('answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkRiddle();
+            }
+        });
+    </script>
+</body>
+</html>
